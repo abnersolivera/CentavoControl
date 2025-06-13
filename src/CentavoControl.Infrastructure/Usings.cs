@@ -4,3 +4,4 @@ global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using CentavoControl.Infrastructure.Data.Configurations;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
+global using CentavoControl.Infrastructure.Data;

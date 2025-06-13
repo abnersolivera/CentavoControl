@@ -1,4 +1,6 @@
-﻿namespace CentavoControl.Infrastructure;
+﻿
+
+namespace CentavoControl.Infrastructure;
 
 public static class InfrastructureModule
 {
@@ -19,6 +21,9 @@ public static class InfrastructureModule
     
     private static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("Database");
+        services.AddDbContext<DataContext>(options =>
+            options.UseNpgsql(connectionString));
         return services;
     }
 }
