@@ -1,6 +1,4 @@
-﻿using CentavoControl.Domain.Entities;
-
-namespace CentavoControl.Domain.Interfaces.Repositories;
+﻿namespace CentavoControl.Domain.Interfaces.Repositories;
 
 public interface ICategoryRepository
 {

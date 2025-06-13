@@ -1,6 +1,4 @@
-﻿using CentavoControl.Domain.Enums;
-
-namespace CentavoControl.Domain.Entities;
+﻿namespace CentavoControl.Domain.Entities;
 
 public class Transaction
 {
