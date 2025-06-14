@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl.UnitTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl", "CentavoControl\CentavoControl.csproj", "{286F5BF2-E3B2-47B9-B753-3920FFE85A19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl.Application", "CentavoControl.Application\CentavoControl.Application.csproj", "{80FB0AE8-8359-468D-B82F-AD91E84295E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{286F5BF2-E3B2-47B9-B753-3920FFE85A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{286F5BF2-E3B2-47B9-B753-3920FFE85A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{286F5BF2-E3B2-47B9-B753-3920FFE85A19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FB0AE8-8359-468D-B82F-AD91E84295E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FB0AE8-8359-468D-B82F-AD91E84295E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FB0AE8-8359-468D-B82F-AD91E84295E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FB0AE8-8359-468D-B82F-AD91E84295E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
