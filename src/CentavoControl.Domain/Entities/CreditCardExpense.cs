@@ -12,6 +12,11 @@ public class CreditCardExpense
     public Guid CategoryId { get; private set; }
     public string UserId { get; private set; }
 
+    public CreditCardExpense()
+    {
+        
+    }
+
     public CreditCardExpense(
         Guid id,
         string description,

@@ -7,6 +7,10 @@ public class Category
     public ETransactionType Type { get; private set; }
     public string UserId { get; private set; }
 
+    public Category()
+    {
+        
+    }
     public Category(Guid id, string name, ETransactionType type, string userId)
     {
         if (string.IsNullOrWhiteSpace(name))

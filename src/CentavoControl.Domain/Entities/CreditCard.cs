@@ -11,6 +11,11 @@ public class CreditCard
     public Guid AccountId { get; private set; }
     public string UserId { get; private set; }
 
+    public CreditCard()
+    {
+        
+    }
+
     public CreditCard(Guid id, string name, decimal limit, int closingDay, int dueDay, Guid accountId, string userId)
     {
         if (string.IsNullOrWhiteSpace(name))

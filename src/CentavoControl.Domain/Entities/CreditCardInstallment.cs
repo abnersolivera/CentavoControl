@@ -10,6 +10,11 @@ public class CreditCardInstallment
 
     public Guid CreditCardExpenseId { get; private set; }
 
+    public CreditCardInstallment()
+    {
+        
+    }
+
     public CreditCardInstallment(
         Guid id,
         int installmentNumber,

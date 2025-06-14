@@ -6,6 +6,11 @@ public class UserProfile
     public string? DisplayName { get; private set; }
     public string? Email { get; private set; }
 
+    public UserProfile()
+    {
+        
+    }
+
     public UserProfile(string firebaseUid, string? displayName = null, string? email = null)
     {
         if (string.IsNullOrWhiteSpace(firebaseUid))

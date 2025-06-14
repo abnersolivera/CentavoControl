@@ -7,8 +7,13 @@ public class Account
     public decimal InitialBalance { get; private set; }
     public bool IsMainAccount { get; private set; }
     public string UserId { get; private set; }
-    
 
+
+    public Account()
+    {
+        
+    }
+    
     public Account(Guid id, string name, decimal initialBalance, bool isMainAccount, string userId)
     {
         if (string.IsNullOrWhiteSpace(name))
