@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CentavoControl</name>
+    </assembly>
+    <members>
+        <member name="T:CentavoControl.Configurations.Controller">
+            <summary>
+            The service configuration.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Configurations.Controller.ConfigureController(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the controller services.
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CentavoControl.Configurations.EndpointsConfiguration">
+            <summary>
+            The endpoints configuration.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Configurations.EndpointsConfiguration.MapEndpoints(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configures the endpoints.
+            </summary>
+            <param name="app"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Configurations.EndpointsConfiguration.ConfigureEndpoints(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the endpoints for the application, including API versioning and Swagger documentation.
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CentavoControl.Configurations.Service">
+            <summary>
+            The service configuration.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Configurations.Service.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Configures the services for the application.
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CentavoControl.Configurations.SwaggerConfiguration">
+            <summary>
+            The Swagger configuration.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Configurations.SwaggerConfiguration.ConfigureSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configures the Swagger services.
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.UserProfileController.Get">
+            <summary>
+            Gets the user profile information.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

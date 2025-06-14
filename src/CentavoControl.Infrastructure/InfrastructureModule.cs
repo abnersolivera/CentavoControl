@@ -1,6 +1,4 @@
-﻿
-
-namespace CentavoControl.Infrastructure;
+﻿namespace CentavoControl.Infrastructure;
 
 public static class InfrastructureModule
 {
