@@ -10,7 +10,7 @@ public class CreditCardInstallment
 
     public Guid CreditCardExpenseId { get; private set; }
 
-    public CreditCardInstallment()
+    private CreditCardInstallment()
     {
         
     }

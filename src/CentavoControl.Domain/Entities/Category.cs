@@ -7,7 +7,7 @@ public class Category
     public ETransactionType Type { get; private set; }
     public string UserId { get; private set; }
 
-    public Category()
+    private Category()
     {
         
     }

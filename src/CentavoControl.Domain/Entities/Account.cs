@@ -9,7 +9,7 @@ public class Account
     public string UserId { get; private set; }
 
 
-    public Account()
+    private Account()
     {
         
     }

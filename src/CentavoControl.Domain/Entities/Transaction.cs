@@ -12,7 +12,7 @@ public class Transaction
     public Guid CategoryId { get; private set; }
     public string UserId { get; private set; }
 
-    public Transaction()
+    private Transaction()
     {
         
     }

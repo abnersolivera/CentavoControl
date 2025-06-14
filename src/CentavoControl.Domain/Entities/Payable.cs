@@ -12,7 +12,7 @@ public class Payable
     public Guid CategoryId { get; private set; }
     public string UserId { get; private set; }
 
-    public Payable()
+    private Payable()
     {
         
     }
