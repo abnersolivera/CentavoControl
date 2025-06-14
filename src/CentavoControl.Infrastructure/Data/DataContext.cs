@@ -13,15 +13,7 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(DataContext).Assembly);
         base.OnModelCreating(modelBuilder);
-        
-        modelBuilder.ApplyConfiguration(new UserProfileConfiguration());
-        modelBuilder.ApplyConfiguration(new AccountConfiguration());
-        modelBuilder.ApplyConfiguration(new CreditCardConfiguration());
-        modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-        modelBuilder.ApplyConfiguration(new TransactionConfiguration());
-        modelBuilder.ApplyConfiguration(new CreditCardExpenseConfiguration());
-        modelBuilder.ApplyConfiguration(new CreditCardInstallmentConfiguration());
-        modelBuilder.ApplyConfiguration(new PayableConfiguration());
     }
 }

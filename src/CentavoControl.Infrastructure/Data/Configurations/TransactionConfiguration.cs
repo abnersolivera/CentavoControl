@@ -8,7 +8,10 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 {
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
+        builder.ToTable("Transaction");
         builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .ValueGeneratedNever();
         builder.Property(e => e.Amount)
             .HasColumnType("decimal(18,2)")
             .IsRequired();
@@ -18,7 +21,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             .HasMaxLength(200)
             .IsRequired();
         builder.Property(e => e.Type)
-            .IsRequired();
+            .IsRequired()
+            .HasConversion<string>();
         builder.Property(e => e.AccountId)
             .IsRequired();
         builder.Property(e => e.CategoryId)

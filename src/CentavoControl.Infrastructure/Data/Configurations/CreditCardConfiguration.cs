@@ -4,7 +4,10 @@ public class CreditCardConfiguration : IEntityTypeConfiguration<CreditCard>
 {
     public void Configure(EntityTypeBuilder<CreditCard> builder)
     {
+        builder.ToTable("CreditCard");
         builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .ValueGeneratedNever();
         builder.Property(e => e.Name)
             .HasMaxLength(100)
             .IsRequired();

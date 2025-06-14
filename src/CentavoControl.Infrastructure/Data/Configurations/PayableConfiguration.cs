@@ -8,7 +8,10 @@ public class PayableConfiguration : IEntityTypeConfiguration<Payable>
 {
     public void Configure(EntityTypeBuilder<Payable> builder)
     {
+        builder.ToTable("Payable");
         builder.HasKey(p => p.Id);
+        builder.Property(p => p.Id)
+            .ValueGeneratedNever();
         builder.Property(p => p.Description)
             .HasMaxLength(200)
             .IsRequired();

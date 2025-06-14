@@ -2,12 +2,12 @@
 
 public class Account
 {
-    public Guid Id { get; private set; }
+    public Guid Id { get; init; }
     public string Name { get; private set; }
     public decimal InitialBalance { get; private set; }
     public bool IsMainAccount { get; private set; }
-
     public string UserId { get; private set; }
+    
 
     public Account(Guid id, string name, decimal initialBalance, bool isMainAccount, string userId)
     {

@@ -4,7 +4,12 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
 {
     public void Configure(EntityTypeBuilder<Account> builder)
     {
+        builder.ToTable("Account");
+        
         builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .ValueGeneratedNever();
+        
         builder.Property(e => e.Name)
             .HasMaxLength(100)
             .IsRequired();

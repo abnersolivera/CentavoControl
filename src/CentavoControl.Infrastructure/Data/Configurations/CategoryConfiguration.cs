@@ -4,13 +4,17 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 {
     public void Configure(EntityTypeBuilder<Category> builder)
     {
+        builder.ToTable("Category");
+        
         builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .ValueGeneratedNever();
         builder.Property(e => e.Name)
             .HasMaxLength(100)
             .IsRequired();
         builder.Property(e => e.Type)
-            .HasMaxLength(10)
-            .IsRequired();
+            .IsRequired()
+            .HasConversion<string>();
         builder.Property(e => e.UserId)
             .HasMaxLength(100)
             .IsRequired();

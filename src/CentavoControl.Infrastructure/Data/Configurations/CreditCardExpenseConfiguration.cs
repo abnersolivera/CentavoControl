@@ -8,7 +8,10 @@ public class CreditCardExpenseConfiguration : IEntityTypeConfiguration<CreditCar
 {
     public void Configure(EntityTypeBuilder<CreditCardExpense> builder)
     {
+        builder.ToTable("CreditCardExpense");
         builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .ValueGeneratedNever();
         builder.Property(e => e.Description)
             .HasMaxLength(200)
             .IsRequired();

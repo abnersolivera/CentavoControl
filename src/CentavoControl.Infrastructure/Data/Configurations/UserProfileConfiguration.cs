@@ -8,6 +8,7 @@ public class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
 {
     public void Configure(EntityTypeBuilder<UserProfile> builder)
     {
+        builder.ToTable("UserProfile");
         builder.HasKey(e => e.FirebaseUid);
         builder.Property(e => e.FirebaseUid)
             .HasMaxLength(100)

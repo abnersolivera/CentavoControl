@@ -8,7 +8,10 @@ public class CreditCardInstallmentConfiguration : IEntityTypeConfiguration<Credi
 {
     public void Configure(EntityTypeBuilder<CreditCardInstallment> builder)
     {
+        builder.ToTable("CreditCardInstallment");
         builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id)
+            .ValueGeneratedNever();
         builder.Property(x => x.InstallmentNumber)
             .IsRequired();
         builder.Property(x => x.InstallmentAmount)
