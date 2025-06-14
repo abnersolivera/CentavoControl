@@ -1,0 +1,1 @@
+﻿global using CentavoControl.Domain.Entities;

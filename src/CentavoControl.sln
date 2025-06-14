@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl.Domain", "Ce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl.Infrastructure", "CentavoControl.Infrastructure\CentavoControl.Infrastructure.csproj", "{AAF6EE88-9D30-42DB-8A09-DC0A5B51B6B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CentavoControl.UnitTest", "..\test\CentavoControl.UnitTest\CentavoControl.UnitTest.csproj", "{3B31FFE2-1973-4939-817B-E42B64F41D4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{AAF6EE88-9D30-42DB-8A09-DC0A5B51B6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF6EE88-9D30-42DB-8A09-DC0A5B51B6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF6EE88-9D30-42DB-8A09-DC0A5B51B6B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B31FFE2-1973-4939-817B-E42B64F41D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B31FFE2-1973-4939-817B-E42B64F41D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B31FFE2-1973-4939-817B-E42B64F41D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B31FFE2-1973-4939-817B-E42B64F41D4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
