@@ -27,3 +27,12 @@ logger.LogInformation("Configuring authorization ...");
 app.UseAuthorization();
 logger.LogInformation("Initializing server ...");
 app.Run();
+
+
+namespace CentavoControl
+{
+    /// <summary>
+    /// Classe partial para configuração do Program (utilizado para testes de integração)
+    /// </summary>
+    public class Program { }
+}
