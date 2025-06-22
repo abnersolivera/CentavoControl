@@ -1,14 +1,10 @@
-using CentavoControl.Application.Handlers;
-using CentavoControl.Domain.Commands.Account;
-using CentavoControl.Domain.Interfaces.Application;
+namespace CentavoControl.IntegrationTest.Tests.Handlers.Commands;
 
-namespace CentavoControl.IntegrationTest.Tests.Application;
-
-public class AccountAppicationTests : IClassFixture<TestDatabaseFixture>
+public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
 {
     private readonly  IAccountApplication _accountApplication;
 
-    public AccountAppicationTests(TestDatabaseFixture fixture)
+    public AccountCommandTests(TestDatabaseFixture fixture)
     {
         IAccountRepository accountRepository = new AccountRepository(fixture.DbContext);
         _accountApplication = new AccountCommandHandler(accountRepository);
