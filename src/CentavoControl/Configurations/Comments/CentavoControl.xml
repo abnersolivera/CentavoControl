@@ -67,5 +67,10 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:CentavoControl.Program">
+            <summary>
+            Classe partial para configuração do Program (utilizado para testes de integração)
+            </summary>
+        </member>
     </members>
 </doc>

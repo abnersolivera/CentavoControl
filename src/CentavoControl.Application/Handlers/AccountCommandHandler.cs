@@ -5,10 +5,14 @@ public class AccountCommandHandler(IAccountRepository repository) : IAccountAppl
     public async Task<AccountDto?> GetAccountByIdAsync(GetAccountByIdCommand command)
     {
         var result = await repository.GetByIdAsync(command.GetId());
+
+        if (result != null)
+        {
+            AccountDto account = new (result.Id, result.Name, result.InitialBalance, result.IsMainAccount, result.UserId);
         
-        AccountDto account = new (result.Id, result.Name, result.InitialBalance, result.IsMainAccount, result.UserId);
-        
-        return account;
+            return account;
+        }
+        return null;
     }
 
     public async Task<IEnumerable<AccountDto>> GetAccountsByUserIdAsync(GetAccountsByUserIdCommand command)

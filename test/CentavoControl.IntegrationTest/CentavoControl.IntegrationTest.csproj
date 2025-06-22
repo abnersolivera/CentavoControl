@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\CentavoControl.Application\CentavoControl.Application.csproj" />
       <ProjectReference Include="..\..\src\CentavoControl.Infrastructure\CentavoControl.Infrastructure.csproj" />
     </ItemGroup>
 

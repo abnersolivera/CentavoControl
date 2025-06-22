@@ -1,6 +1,108 @@
+using CentavoControl.Application.Handlers;
+using CentavoControl.Domain.Commands.Account;
+using CentavoControl.Domain.Interfaces.Application;
+
 namespace CentavoControl.IntegrationTest.Tests.Application;
 
-public class AccountAppicationTests(TestDatabaseFixture fixture) : IClassFixture<TestDatabaseFixture>
+public class AccountAppicationTests : IClassFixture<TestDatabaseFixture>
 {
+    private readonly  IAccountApplication _accountApplication;
+
+    public AccountAppicationTests(TestDatabaseFixture fixture)
+    {
+        IAccountRepository accountRepository = new AccountRepository(fixture.DbContext);
+        _accountApplication = new AccountCommandHandler(accountRepository);
+    }
     
+    [Fact]
+    public async Task Should_Get_Account_By_Id()
+    {
+        // Arrange
+        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
+        var accountNew = await _accountApplication.AddAccountAsync(accountCommand);
+        
+        var command = new GetAccountByIdCommand();
+        command.SetId(accountNew.Id.ToString());
+        
+        // Act
+        var account = await _accountApplication.GetAccountByIdAsync(command);
+        
+        // Assert
+        Assert.NotNull(account);
+        Assert.Equal(accountNew.Id, account.Id);
+    }
+    
+    [Fact]
+    public async Task Should_Get_Accounts_By_UserId()
+    {
+        // Arrange
+        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
+        var accountNew = await _accountApplication.AddAccountAsync(accountCommand);
+        
+        var command = new GetAccountsByUserIdCommand();
+        command.SetUserId(accountNew.UserId);
+        
+        // Act
+        var accounts = await _accountApplication.GetAccountsByUserIdAsync(command);
+        
+        // Assert
+        Assert.NotNull(accounts);
+        Assert.Contains(accounts, x => x.Id == accountNew.Id);
+    }
+    
+    [Fact]
+    public async Task Should_Add_Account()
+    {
+        // Arrange
+        var command = new AddAccountCommand("New Account", 500.00m, false);
+        
+        // Act
+        var account = await _accountApplication.AddAccountAsync(command);
+        
+        // Assert
+        Assert.NotNull(account);
+        Assert.Equal("New Account", account.Name);
+        Assert.Equal(500.00m, account.InitialBalance);
+        Assert.False(account.IsMainAccount);
+    }
+    
+    [Fact]
+    public async Task Should_Update_Account()
+    {
+        // Arrange
+        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
+        var accountNew = await _accountApplication.AddAccountAsync(accountCommand);
+        
+        var command = new UpdateAccountCommand("Updated Account");
+        command.SetAccountId(accountNew.Id.ToString());
+        
+        // Act
+        var updatedAccount = await _accountApplication.UpdateAccountAsync(command);
+        
+        // Assert
+        Assert.NotNull(updatedAccount);
+        Assert.Equal("Updated Account", updatedAccount.Name);
+    }
+    
+    [Fact]
+    public async Task Should_Delete_Account()
+    {
+        // Arrange
+        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
+        var accountNew = await _accountApplication.AddAccountAsync(accountCommand);
+        
+        var command = new DeleteAccountCommand();
+        command.SetAccountId(accountNew.Id.ToString());
+        
+        // Act
+        await _accountApplication.DeleteAccountAsync(command);
+        
+        var getAccountCommand = new GetAccountByIdCommand();
+        getAccountCommand.SetId(accountNew.Id.ToString());
+        
+        var deletedAccount = await _accountApplication.GetAccountByIdAsync(getAccountCommand);
+        
+        // Assert
+        Assert.Null(deletedAccount);
+    }
 }
