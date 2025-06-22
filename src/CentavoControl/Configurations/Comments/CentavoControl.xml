@@ -61,6 +61,52 @@
             <param name="app"></param>
             <returns></returns>
         </member>
+        <member name="T:CentavoControl.Controllers.AccountController">
+            <summary>
+            Controlador de conta para gerenciar operações relacionadas à conta do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.#ctor(CentavoControl.Domain.Interfaces.Application.IAccountApplication)">
+            <summary>
+            Controlador de conta para gerenciar operações relacionadas à conta do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.GetAccountById(System.String)">
+            <summary>
+            Obtém uma conta pelo ID.
+            </summary>
+            <param name="id"/>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.GetAccountsByUserId(System.String)">
+            <summary>
+            Obtém uma lista de contas associadas a um usuário específico pelo ID do usuário.
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.AddAccount(CentavoControl.Domain.Commands.Account.AddAccountCommand)">
+            <summary>
+            Adiciona uma nova conta com base nos dados fornecidos no comando.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.UpdateAccount(System.String,CentavoControl.Domain.Commands.Account.UpdateAccountCommand)">
+            <summary>
+            Atualiza uma conta existente com base no ID fornecido e nos dados do comando.
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.AccountController.DeleteAccount(System.String)">
+            <summary>
+            Exclui uma conta com base no ID fornecido.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:CentavoControl.Controllers.UserProfileController.Get">
             <summary>
             Gets the user profile information.
