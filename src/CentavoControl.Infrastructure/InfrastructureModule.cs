@@ -1,4 +1,6 @@
-﻿namespace CentavoControl.Infrastructure;
+﻿using CentavoControl.Infrastructure.Repositories;
+
+namespace CentavoControl.Infrastructure;
 
 public static class InfrastructureModule
 {
@@ -14,6 +16,15 @@ public static class InfrastructureModule
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
     {
+        services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICreditCardExpenseRepository, CreditCardExpenseRepository>();
+        services.AddScoped<ICreditCardInstallmentRepository, CreditCardInstallmentRepository>();
+        services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+        services.AddScoped<IPayableRepository, PayableRepository>();
+        services.AddScoped<ITransactionRepository, TransactionRepository>();
+        services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+        
         return services;
     }
     

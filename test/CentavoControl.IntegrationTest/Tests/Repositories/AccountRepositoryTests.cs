@@ -1,9 +1,3 @@
-using CentavoControl.Domain.Entities;
-using CentavoControl.Domain.Interfaces.Repositories;
-using CentavoControl.Infrastructure.Data;
-using CentavoControl.Infrastructure.Repositories;
-using CentavoControl.IntegrationTest.Common;
-
 namespace CentavoControl.IntegrationTest.Tests.Repositories;
 
 public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture<TestDatabaseFixture>
@@ -136,9 +130,7 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
         ];
 
         foreach (var account in accounts)
-        {
             await _repository.AddAsync(account);
-        }
 
         var retrievedAccount = await _repository.GetByUserIdAsync(userId);
         
