@@ -1,6 +1,6 @@
-namespace CentavoControl.Application;
+namespace CentavoControl.Application.Handlers;
 
-public class AccountApplication(IAccountRepository repository) : IAccountApplication
+public class AccountCommandHandler(IAccountRepository repository) : IAccountApplication
 {
     public async Task<AccountDto?> GetAccountByIdAsync(GetAccountByIdCommand command)
     {

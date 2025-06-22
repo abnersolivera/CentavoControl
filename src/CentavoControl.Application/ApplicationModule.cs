@@ -1,3 +1,5 @@
+using CentavoControl.Application.Handlers;
+
 namespace CentavoControl.Application;
 
 public static class ApplicationModule
@@ -12,7 +14,7 @@ public static class ApplicationModule
     
     private static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IAccountApplication, AccountApplication>();
+        services.AddScoped<IAccountApplication, AccountCommandHandler>();
         
         return services;
     }
