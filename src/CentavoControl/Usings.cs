@@ -6,3 +6,8 @@ global using CentavoControl.Configurations;
 global using Controller = Microsoft.AspNetCore.Mvc.Controller;
 global using Asp.Versioning;
 global using CentavoControl.Application;
+global using CentavoControl.Domain.Commands.Account;
+global using FluentValidation;
+global using CentavoControl.Domain.Interfaces.Application;
+global using CentavoControl.Validators.Account.Commands;
+global using Microsoft.AspNetCore.Http.Extensions;

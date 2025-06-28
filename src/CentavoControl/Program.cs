@@ -7,6 +7,15 @@ var config = builder.Configuration;
 builder.Services.ConfigureServices(config);
 builder.Services.ConfigureController();
 builder.Services.ConfigureEndpoints();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 
 #endregion
@@ -24,6 +33,7 @@ app.ConfigureSwagger();
 logger.LogInformation("Mapping endpoint ...");
 app.MapEndpoints(config);
 logger.LogInformation("Configuring authorization ...");
+app.UseCors("AllowAll");
 app.UseAuthorization();
 logger.LogInformation("Initializing server ...");
 app.Run();

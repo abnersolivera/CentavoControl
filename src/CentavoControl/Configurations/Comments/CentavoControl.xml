@@ -107,15 +107,19 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:CentavoControl.Controllers.UserProfileController.Get">
-            <summary>
-            Gets the user profile information.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:CentavoControl.Program">
             <summary>
             Classe partial para configuração do Program (utilizado para testes de integração)
+            </summary>
+        </member>
+        <member name="T:CentavoControl.Validators.Account.Commands.AddAccountCommandValidator">
+            <summary>
+            Validator for the AddAccountCommand.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Validators.Account.Commands.AddAccountCommandValidator.#ctor">
+            <summary>
+            Constructor
             </summary>
         </member>
     </members>

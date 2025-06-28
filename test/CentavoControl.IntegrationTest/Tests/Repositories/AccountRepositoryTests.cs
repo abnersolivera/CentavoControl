@@ -15,9 +15,9 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
             Guid.NewGuid().ToString()
         );
 
-        await _repository.AddAsync(account);
+        await _repository.AddAsync(account, CancellationToken.None);
 
-        var loadedAccount = await _repository.GetByIdAsync(account.Id);
+        var loadedAccount = await _repository.GetByIdAsync(account.Id, CancellationToken.None);
 
         Assert.NotNull(loadedAccount);
         Assert.Equal(account.Id, loadedAccount.Id);
@@ -38,13 +38,13 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
             Guid.NewGuid().ToString()
         );
 
-        await _repository.AddAsync(account);
+        await _repository.AddAsync(account, CancellationToken.None);
 
         account.ChangeName("Updated Account");
 
-        await _repository.UpdateAsync(account);
+        await _repository.UpdateAsync(account, CancellationToken.None);
 
-        var updatedAccount = await _repository.GetByIdAsync(account.Id);
+        var updatedAccount = await _repository.GetByIdAsync(account.Id, CancellationToken.None);
 
         Assert.NotNull(updatedAccount);
         Assert.Equal("Updated Account", updatedAccount.Name);
@@ -61,11 +61,11 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
             Guid.NewGuid().ToString()
         );
 
-        await _repository.AddAsync(account);
+        await _repository.AddAsync(account, CancellationToken.None);
 
-        await _repository.DeleteAsync(account.Id);
+        await _repository.DeleteAsync(account, CancellationToken.None);
 
-        var deletedAccount = await _repository.GetByIdAsync(account.Id);
+        var deletedAccount = await _repository.GetByIdAsync(account.Id, CancellationToken.None);
 
         Assert.Null(deletedAccount);
     }
@@ -81,9 +81,9 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
             Guid.NewGuid().ToString()
         );
 
-        await _repository.AddAsync(account);
+        await _repository.AddAsync(account, CancellationToken.None);
 
-        var retrievedAccount = await _repository.GetByIdAsync(account.Id);
+        var retrievedAccount = await _repository.GetByIdAsync(account.Id, CancellationToken.None);
 
         Assert.NotNull(retrievedAccount);
         Assert.Equal(account.Id, retrievedAccount.Id);
@@ -130,9 +130,9 @@ public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture
         ];
 
         foreach (var account in accounts)
-            await _repository.AddAsync(account);
+            await _repository.AddAsync(account, CancellationToken.None);
 
-        var retrievedAccount = await _repository.GetByUserIdAsync(userId);
+        var retrievedAccount = await _repository.GetByUserIdAsync(userId, CancellationToken.None);
         
         Assert.NotNull(retrievedAccount);
         Assert.Equal(3, retrievedAccount.Count());
