@@ -1,4 +1,4 @@
-namespace CentavoControl.Domain.Commands.Account;
+namespace CentavoControl.Application.Commands.Account;
 
 public class UpdateAccountCommand(string name)
 {

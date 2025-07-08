@@ -1,6 +1,6 @@
-namespace CentavoControl.Domain.Commands.Account;
+namespace CentavoControl.Application.Queries.Account;
 
-public class GetAccountByIdCommand
+public class GetAccountByIdQuery
 {
     private Guid _id;
     

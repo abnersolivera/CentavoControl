@@ -1,4 +1,6 @@
-namespace CentavoControl.Validators.Account.Commands;
+using CentavoControl.Application.Commands.Account;
+
+namespace CentavoControl.Application.Validators.Account.Commands;
 
 /// <summary>
 /// Validator for the AddAccountCommand.

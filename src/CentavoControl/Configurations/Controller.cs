@@ -15,8 +15,6 @@ public static class Controller
     /// <returns></returns>
     public static IServiceCollection ConfigureController(this IServiceCollection services)
     {
-        ValidatorOptions.Global.DefaultClassLevelCascadeMode = CascadeMode.Stop;
-        
         services.AddControllersWithViews()
             .AddJsonOptions(options =>
             {

@@ -1,13 +1,18 @@
+using CentavoControl.Application.Commands.Account;
+using CentavoControl.Application.Queries.Account;
+
 namespace CentavoControl.IntegrationTest.Tests.Handlers.Commands;
 
 public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
 {
-    private readonly  IAccountApplication _accountApplication;
+    private readonly  IAccountCommand _accountCommand;
+    private readonly IAccountQuery _accountQuery;
 
     public AccountCommandTests(TestDatabaseFixture fixture)
     {
         IAccountRepository accountRepository = new AccountRepository(fixture.DbContext);
-        _accountApplication = new AccountCommandHandler(accountRepository);
+        _accountCommand = new AccountCommandHandler(accountRepository);
+        _accountQuery = new AccountQueryHandler(accountRepository);
     }
     
     [Fact]
@@ -15,13 +20,13 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountApplication.AddAccountAsync(accountCommand, CancellationToken.None);
+        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
         
-        var command = new GetAccountByIdCommand();
+        var command = new GetAccountByIdQuery();
         command.SetId(accountNew.Id.ToString());
         
         // Act
-        var account = await _accountApplication.GetAccountByIdAsync(command, CancellationToken.None);
+        var account = await _accountQuery.GetAccountByIdAsync(command, CancellationToken.None);
         
         // Assert
         Assert.NotNull(account);
@@ -33,13 +38,13 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountApplication.AddAccountAsync(accountCommand, CancellationToken.None);
+        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
         
-        var command = new GetAccountsByUserIdCommand();
+        var command = new GetAccountsByUserIdQuery();
         command.SetUserId(accountNew.UserId);
         
         // Act
-        var accounts = await _accountApplication.GetAccountsByUserIdAsync(command, CancellationToken.None);
+        var accounts = await _accountQuery.GetAccountsByUserIdAsync(command, CancellationToken.None);
         
         // Assert
         Assert.NotNull(accounts);
@@ -53,7 +58,7 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
         var command = new AddAccountCommand("New Account", 500.00m, false);
         
         // Act
-        var account = await _accountApplication.AddAccountAsync(command, CancellationToken.None);
+        var account = await _accountCommand.AddAccountAsync(command, CancellationToken.None);
         
         // Assert
         Assert.NotNull(account);
@@ -67,13 +72,13 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountApplication.AddAccountAsync(accountCommand, CancellationToken.None);
+        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
         
         var command = new UpdateAccountCommand("Updated Account");
         command.SetAccountId(accountNew.Id.ToString());
         
         // Act
-        var updatedAccount = await _accountApplication.UpdateAccountAsync(command, CancellationToken.None);
+        var updatedAccount = await _accountCommand.UpdateAccountAsync(command, CancellationToken.None);
         
         // Assert
         Assert.NotNull(updatedAccount);
@@ -85,18 +90,18 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountApplication.AddAccountAsync(accountCommand, CancellationToken.None);
+        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
         
         var command = new DeleteAccountCommand();
         command.SetAccountId(accountNew.Id.ToString());
         
         // Act
-        await _accountApplication.DeleteAccountAsync(command, CancellationToken.None);
+        await _accountCommand.DeleteAccountAsync(command, CancellationToken.None);
         
-        var getAccountCommand = new GetAccountByIdCommand();
+        var getAccountCommand = new GetAccountByIdQuery();
         getAccountCommand.SetId(accountNew.Id.ToString());
         
-        var deletedAccount = await _accountApplication.GetAccountByIdAsync(getAccountCommand, CancellationToken.None);
+        var deletedAccount = await _accountQuery.GetAccountByIdAsync(getAccountCommand, CancellationToken.None);
         
         // Assert
         Assert.Null(deletedAccount);

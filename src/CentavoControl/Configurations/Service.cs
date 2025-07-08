@@ -21,8 +21,6 @@ public static class Service
         
         logger.LogInformation("Configuring services ...");
         
-        
-        
         services
             .ConfigureApplication()
             .ConfigureInfrastructure(configuration)

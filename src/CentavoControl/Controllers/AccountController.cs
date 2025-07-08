@@ -1,3 +1,6 @@
+using CentavoControl.Application.Commands.Account;
+using CentavoControl.Application.Queries.Account;
+using CentavoControl.Application.Validators.Account.Commands;
 using CentavoControl.Domain.Interfaces.Repositories;
 
 namespace CentavoControl.Controllers;
@@ -7,7 +10,7 @@ namespace CentavoControl.Controllers;
 /// </summary>
 [Route("[controller]")]
 [ApiController]
-public class AccountController(IAccountApplication handler, IAccountRepository repository, ILogger<AccountController> logger) : Controller
+public class AccountController(IAccountCommand handler, IAccountQuery query, IAccountRepository repository, ILogger<AccountController> logger) : Controller
 {
     /// <summary>
     /// Obtém uma conta pelo ID.
@@ -18,9 +21,9 @@ public class AccountController(IAccountApplication handler, IAccountRepository r
     [HttpGet("{id}")]
     public async Task<IActionResult> GetAccountById([FromRoute] string id, CancellationToken cancellationToken)
     {
-        var command = new GetAccountByIdCommand();
+        var command = new GetAccountByIdQuery();
         command.SetId(id);
-        return Ok(await handler.GetAccountByIdAsync(command, cancellationToken));
+        return Ok(await query.GetAccountByIdAsync(command, cancellationToken));
     }
 
     /// <summary>
@@ -32,9 +35,9 @@ public class AccountController(IAccountApplication handler, IAccountRepository r
     [HttpGet("User/{userId}")]
     public async Task<IActionResult> GetAccountsByUserId([FromRoute] string userId, CancellationToken cancellationToken)
     {
-        var command = new GetAccountsByUserIdCommand();
+        var command = new GetAccountsByUserIdQuery();
         command.SetUserId(userId);
-        return Ok(await handler.GetAccountsByUserIdAsync(command, cancellationToken));
+        return Ok(await query.GetAccountsByUserIdAsync(command, cancellationToken));
     }
 
     /// <summary>
