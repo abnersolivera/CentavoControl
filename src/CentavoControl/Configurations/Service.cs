@@ -1,3 +1,5 @@
+
+
 namespace CentavoControl.Configurations;
 
 /// <summary>
@@ -17,7 +19,10 @@ public static class Service
         var serviceProvider = services.BuildServiceProvider();
         var logger = serviceProvider.GetService<ILoggerFactory>()?.CreateLogger("IoC")!;
         
+        logger.LogInformation("Configuring services ...");
+        
         services
+            .ConfigureApplication()
             .ConfigureInfrastructure(configuration)
             .Configure<KestrelServerOptions>(options => { options.AllowSynchronousIO = true; });
         return services;

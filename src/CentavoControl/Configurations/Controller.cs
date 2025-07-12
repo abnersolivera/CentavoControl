@@ -1,3 +1,6 @@
+using System.Text.Json;
+using FluentValidation;
+
 namespace CentavoControl.Configurations;
 
 /// <summary>
@@ -15,8 +18,9 @@ public static class Controller
         services.AddControllersWithViews()
             .AddJsonOptions(options =>
             {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.Never;
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
 
         return services;

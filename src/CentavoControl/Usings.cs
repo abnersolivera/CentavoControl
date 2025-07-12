@@ -5,3 +5,6 @@ global using Microsoft.AspNetCore.Server.Kestrel.Core;
 global using CentavoControl.Configurations;
 global using Controller = Microsoft.AspNetCore.Mvc.Controller;
 global using Asp.Versioning;
+global using CentavoControl.Application;
+global using FluentValidation;
+global using Microsoft.AspNetCore.Http.Extensions;
