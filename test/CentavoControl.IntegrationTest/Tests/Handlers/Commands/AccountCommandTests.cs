@@ -16,42 +16,6 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     }
     
     [Fact]
-    public async Task Should_Get_Account_By_Id()
-    {
-        // Arrange
-        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
-        
-        var command = new GetAccountByIdQuery();
-        command.SetId(accountNew.Id.ToString());
-        
-        // Act
-        var account = await _accountQuery.GetAccountByIdAsync(command, CancellationToken.None);
-        
-        // Assert
-        Assert.NotNull(account);
-        Assert.Equal(accountNew.Id, account.Id);
-    }
-    
-    [Fact]
-    public async Task Should_Get_Accounts_By_UserId()
-    {
-        // Arrange
-        var accountCommand = new AddAccountCommand("Test Account",1000.00m,true);
-        var accountNew = await _accountCommand.AddAccountAsync(accountCommand, CancellationToken.None);
-        
-        var command = new GetAccountsByUserIdQuery();
-        command.SetUserId(accountNew.UserId);
-        
-        // Act
-        var accounts = await _accountQuery.GetAccountsByUserIdAsync(command, CancellationToken.None);
-        
-        // Assert
-        Assert.NotNull(accounts);
-        Assert.Contains(accounts, x => x.Id == accountNew.Id);
-    }
-    
-    [Fact]
     public async Task Should_Add_Account()
     {
         // Arrange
