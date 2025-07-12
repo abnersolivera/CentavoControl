@@ -15,7 +15,7 @@ public static class TestContainerSetup
             .WithPortBinding(5432, true)
             .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(5432))
             .WithCleanUp(true)
-            .WithName("CentavoControl.PostgresTestContainer");
+            .WithName($"CentavoControl.PostgresTestContainer{Guid.NewGuid()}");
         
         var container = containerBuilder.Build();
         
