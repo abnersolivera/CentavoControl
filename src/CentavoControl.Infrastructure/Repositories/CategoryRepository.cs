@@ -9,37 +9,37 @@ public class CategoryRepository : ICategoryRepository
         _context = context;
     }
 
-    public async Task<Category?> GetByIdAsync(Guid id)
+    public async Task<Category?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        return await _context.Set<Category>().FindAsync(id);
+        return await _context.Categories.SingleOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 
-    public async Task<IEnumerable<Category>> GetByUserIdAsync(string userId)
+    public async Task<IEnumerable<Category>> GetByUserIdAsync(string userId, CancellationToken cancellationToken)
     {
-        return await _context.Set<Category>()
+        return await _context.Categories
             .Where(c => c.UserId == userId)
-            .ToListAsync();
+            .ToListAsync(cancellationToken);
     }
 
-    public async Task AddAsync(Category category)
+    public async Task AddAsync(Category category, CancellationToken cancellationToken)
     {
-        await _context.Set<Category>().AddAsync(category);
-        await _context.SaveChangesAsync();
+        await _context.Categories.AddAsync(category, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task UpdateAsync(Category category)
+    public async Task UpdateAsync(Category category, CancellationToken cancellationToken)
     {
-        _context.Set<Category>().Update(category);
-        await _context.SaveChangesAsync();
+        _context.Categories.Update(category);
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAsync(Guid id)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        var category = await GetByIdAsync(id);
+        var category = await GetByIdAsync(id, cancellationToken);
         if (category != null)
         {
-            _context.Set<Category>().Remove(category);
-            await _context.SaveChangesAsync();
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }
