@@ -1,3 +1,5 @@
+using CentavoControl.Domain.Enums;
+
 namespace CentavoControl.Infrastructure.Repositories;
 
 public class CategoryRepository : ICategoryRepository
@@ -18,6 +20,13 @@ public class CategoryRepository : ICategoryRepository
     {
         return await _context.Categories
             .Where(c => c.UserId == userId)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<Category>> GetByTypeAndUserIdAsync(ETransactionType type, string userId, CancellationToken cancellationToken)
+    {
+        return await _context.Categories
+            .Where(c => c.Type == type && c.UserId == userId)
             .ToListAsync(cancellationToken);
     }
 

@@ -6,4 +6,5 @@ public interface ICategoryQuery
 {
     Task<CategoryViewModel?> GetCategoryByIdAsync(GetCategoryByIdQuery query, CancellationToken cancellationToken);
     Task<IEnumerable<CategoryViewModel?>> GetCategoriesByUserIdAsync(GetCategoryByUserIdQuery query, CancellationToken cancellationToken);
+    Task<IEnumerable<CategoryViewModel>> GetCategoriesByTypeAndUserIdAsync(GetCategoryByTypeAndUserIdQuery query, CancellationToken cancellationToken);
 }

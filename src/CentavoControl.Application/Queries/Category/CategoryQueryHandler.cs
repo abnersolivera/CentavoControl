@@ -1,4 +1,5 @@
 using CentavoControl.Application.ViewModels;
+using CentavoControl.Domain.Enums;
 
 namespace CentavoControl.Application.Queries.Category;
 
@@ -29,6 +30,22 @@ public class CategoryQueryHandler(ICategoryRepository repository) : ICategoryQue
             category.Type,
             category.UserId
         ));
+        return categoryViewModels;
+    }
+
+    public async Task<IEnumerable<CategoryViewModel>> GetCategoriesByTypeAndUserIdAsync(GetCategoryByTypeAndUserIdQuery query, CancellationToken cancellationToken)
+    {
+        var transactionTypeParse = Enum.Parse<ETransactionType>(query.GetType(), true);
+        
+        var categories = await repository.GetByTypeAndUserIdAsync(transactionTypeParse, query.GetUserId(), cancellationToken);
+        
+        var categoryViewModels = categories.Select(category => new CategoryViewModel(
+            category.Id,
+            category.Name,
+            category.Type,
+            category.UserId
+        ));
+        
         return categoryViewModels;
     }
 }

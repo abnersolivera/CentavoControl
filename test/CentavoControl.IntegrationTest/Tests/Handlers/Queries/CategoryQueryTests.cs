@@ -55,4 +55,33 @@ public class CategoryQueryTests : IClassFixture<TestDatabaseFixture>
         Assert.Equal("Test Category", category.Name);
         Assert.Equal(Enum.Parse<ETransactionType>("Income"), category.Type);
     }
+    
+    [Fact]
+    public async Task Should_Get_By_Type_And_UserId()
+    {
+        // Arrange
+        var userId = "0741789C-C8B4-468F-BE98-CC7569D85918";
+        var commands = new List<AddCategoryCommand>
+        {
+            new ("Salary", "Income"),
+            new ("Freelance", "Income"),
+            new ("Groceries", "Expense")
+        };
+        foreach (var command in commands)
+            await _categoryCommand.AddCategoryAsync(command, CancellationToken.None);
+        
+        var query = new GetCategoryByTypeAndUserIdQuery(userId, nameof(ETransactionType.Income));
+        
+        // Act
+        var categories = (await _categoryQuery.GetCategoriesByTypeAndUserIdAsync(query, CancellationToken.None)).ToList();
+        
+        // Assert
+        Assert.NotNull(categories);
+        Assert.NotEmpty(categories);
+        Assert.All(categories, c => 
+        {
+            Assert.Equal(userId, c.UserId);
+            Assert.Equal(ETransactionType.Income, c.Type);
+        });
+    }
 }
