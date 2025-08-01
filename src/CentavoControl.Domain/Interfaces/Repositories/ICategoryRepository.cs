@@ -2,9 +2,10 @@
 
 public interface ICategoryRepository
 {
-    Task<Category?> GetByIdAsync(Guid id);
-    Task<IEnumerable<Category>> GetByUserIdAsync(string userId);
-    Task AddAsync(Category category);
-    Task UpdateAsync(Category category);
-    Task DeleteAsync(Guid id);
+    Task<Category?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<IEnumerable<Category>> GetByUserIdAsync(string userId, CancellationToken cancellationToken);
+    Task<IEnumerable<Category>> GetByTypeAndUserIdAsync(ETransactionType type, string userId, CancellationToken cancellationToken);
+    Task AddAsync(Category category, CancellationToken cancellationToken);
+    Task UpdateAsync(Category category, CancellationToken cancellationToken);
+    Task DeleteAsync(Guid id, CancellationToken cancellationToken);
 }

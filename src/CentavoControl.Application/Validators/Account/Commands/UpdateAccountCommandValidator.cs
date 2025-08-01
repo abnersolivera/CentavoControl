@@ -1,5 +1,3 @@
-using CentavoControl.Application.Commands.Account;
-
 namespace CentavoControl.Application.Validators.Account.Commands;
 
 /// <summary>
@@ -12,10 +10,6 @@ public class UpdateAccountCommandValidator : AbstractValidator<UpdateAccountComm
     /// </summary>
     public UpdateAccountCommandValidator(IAccountRepository repository)
     {
-        RuleFor(x => x.GetAccountId())
-            .NotEmpty()
-            .WithMessage("Id is required.");
-        
         RuleFor(x => x)
             .MustAsync(async (command, cancellation) =>
             {
@@ -25,6 +19,8 @@ public class UpdateAccountCommandValidator : AbstractValidator<UpdateAccountComm
             .WithMessage("Account not found.");
 
         RuleFor(x => x.Name)
+            .NotNull()
+            .WithMessage("Name cannot be null.")
             .NotEmpty()
             .WithMessage("Name is required.")
             .MaximumLength(100)
