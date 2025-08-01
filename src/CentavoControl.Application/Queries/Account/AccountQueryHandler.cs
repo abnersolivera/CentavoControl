@@ -3,7 +3,7 @@ using CentavoControl.Application.ViewModels;
 
 namespace CentavoControl.Application.Queries.Account;
 
-public class AccountQueryHandler(IAccountRepository repository) : IAccountQuery
+public class AccountQueryHandler(IAccountRepository repository) : IAccountQueryHandler
 {
     public async Task<AccountViewModel?> GetAccountByIdAsync(GetAccountByIdQuery query,
         CancellationToken cancellationToken)

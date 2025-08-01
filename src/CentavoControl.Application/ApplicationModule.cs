@@ -1,6 +1,3 @@
-using CentavoControl.Application.Commands.Account;
-using CentavoControl.Application.Queries.Account;
-
 namespace CentavoControl.Application;
 
 public static class ApplicationModule
@@ -16,8 +13,10 @@ public static class ApplicationModule
     
     private static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IAccountCommand, AccountCommandHandler>();
-        services.AddScoped<IAccountQuery, AccountQueryHandler>();
+        services.AddScoped<IAccountCommandHandeler, AccountCommandHandeler>();
+        services.AddScoped<IAccountQueryHandler, AccountQueryHandler>();
+        services.AddScoped<ICategoryCommandHandler, CategoryCommandHandler>();
+        services.AddScoped<ICategoryQueryHandler, CategoryQueryHandler>();
         
         return services;
     }

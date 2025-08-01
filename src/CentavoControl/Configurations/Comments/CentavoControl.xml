@@ -66,7 +66,7 @@
             Controlador de conta para gerenciar operações relacionadas à conta do usuário.
             </summary>
         </member>
-        <member name="M:CentavoControl.Controllers.AccountController.#ctor(CentavoControl.Application.Commands.Account.IAccountCommand,CentavoControl.Application.Queries.Account.IAccountQuery,CentavoControl.Domain.Interfaces.Repositories.IAccountRepository,Microsoft.Extensions.Logging.ILogger{CentavoControl.Controllers.AccountController})">
+        <member name="M:CentavoControl.Controllers.AccountController.#ctor(CentavoControl.Application.Commands.Account.IAccountCommandHandeler,CentavoControl.Application.Queries.Account.IAccountQueryHandler,CentavoControl.Domain.Interfaces.Repositories.IAccountRepository,Microsoft.Extensions.Logging.ILogger{CentavoControl.Controllers.AccountController})">
             <summary>
             Controlador de conta para gerenciar operações relacionadas à conta do usuário.
             </summary>
@@ -107,6 +107,69 @@
         <member name="M:CentavoControl.Controllers.AccountController.DeleteAccount(System.String,System.Threading.CancellationToken)">
             <summary>
             Exclui uma conta com base no ID fornecido.
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CentavoControl.Controllers.CategoryController">
+            <summary>
+            Controlador de categoria para gerenciar operações relacionadas às categorias do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.#ctor(CentavoControl.Application.Commands.Category.ICategoryCommandHandler,CentavoControl.Application.Queries.Category.ICategoryQueryHandler)">
+            <summary>
+            Controlador de categoria para gerenciar operações relacionadas às categorias do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.GetCategoryById(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma categoria pelo ID.
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.GetCategoriesByUserId(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma lista de categorias associadas a um usuário específico pelo ID do usuário.
+            </summary>
+            <param name="userId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.GetCategoriesByTypeAndUserId(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma lista de categorias buscando pelo tipo e ID do usuário.
+            O tipo pode ser "Income" ou "Expense", representando categorias de receita ou despesa.
+            </summary>
+            <param name="type"></param>
+            <param name="userId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.AddCategory(CentavoControl.Application.Commands.Category.AddCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            Adiciona uma nova categoria com base nos dados fornecidos no comando.
+            O comando deve conter o nome da categoria e o tipo (por exemplo, "Income" ou "Expense").
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.UpdateCategory(System.String,CentavoControl.Application.Commands.Category.UpdateCategoryCommand,System.Threading.CancellationToken)">
+            <summary>
+            Atualiza uma categoria existente com base no ID fornecido e nos dados do comando.
+            O comando deve conter o nome da categoria e o tipo (por exemplo, "Income" ou "Expense").
+            </summary>
+            <param name="id"></param>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.CategoryController.DeleteCategory(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Exclui uma categoria existente com base no ID fornecido.
             </summary>
             <param name="id"></param>
             <param name="cancellationToken"></param>

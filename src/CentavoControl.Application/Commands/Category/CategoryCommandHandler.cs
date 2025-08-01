@@ -2,7 +2,7 @@ using CentavoControl.Application.ViewModels;
 
 namespace CentavoControl.Application.Commands.Category;
 
-public class CategoryCommandHandler(ICategoryRepository repository) : ICategoryCommand
+public class CategoryCommandHandler(ICategoryRepository repository) : ICategoryCommandHandler
 {
     public async Task<CategoryViewModel> AddCategoryAsync(AddCategoryCommand command, CancellationToken cancellationToken)
     {

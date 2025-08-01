@@ -1,0 +1,39 @@
+namespace CentavoControl.Infrastructure.Persistence.Repositories;
+
+public class PayableRepository(DataContext context) : IPayableRepository
+{
+    public async Task<Payable?> GetByIdAsync(Guid id, CancellationToken cancellation)
+    {
+        return await context.Payables.FindAsync(id);
+    }
+
+    public async Task<IEnumerable<Payable>> GetByUserIdAsync(string userId, CancellationToken cancellation)
+    {
+        return await context.Payables
+            .Where(p => p.UserId == userId)
+            .ToListAsync(cancellation);
+    }
+
+    public async Task AddAsync(Payable payable, CancellationToken cancellation)
+    {
+        await context.Payables.AddAsync(payable, cancellation);
+        await context.SaveChangesAsync(cancellation);
+    }
+
+    public async Task UpdateAsync(Payable payable, CancellationToken cancellation)
+    {
+        context.Payables.Update(payable);
+        await context.SaveChangesAsync(cancellation);
+    }
+
+    public async Task DeleteAsync(Guid id, CancellationToken cancellation)
+    {
+        var payable = await GetByIdAsync(id, cancellation);
+        if (payable != null)
+        {
+            context.Payables.Remove(payable);
+            await context.SaveChangesAsync(cancellation);
+        }
+    }
+}
+

@@ -1,6 +1,3 @@
-using CentavoControl.Application.Commands.Category;
-using CentavoControl.Application.Queries.Category;
-
 namespace CentavoControl.Controllers;
 
 /// <summary>
@@ -8,7 +5,7 @@ namespace CentavoControl.Controllers;
 /// </summary>
 [Route("[controller]")]
 [ApiController]
-public class CategoryController(CategoryCommandHandler commandHandler, CategoryQueryHandler queryHandler) : Controller
+public class CategoryController(ICategoryCommandHandler commandHandler, ICategoryQueryHandler queryHandler) : Controller
 {
     /// <summary>
     /// Obtém uma categoria pelo ID.
