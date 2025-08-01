@@ -1,8 +1,4 @@
-﻿using CentavoControl.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace CentavoControl.Infrastructure.Data.Configurations;
+﻿namespace CentavoControl.Infrastructure.Persistence.Configurations;
 
 public class UserProfileConfiguration : IEntityTypeConfiguration<UserProfile>
 {

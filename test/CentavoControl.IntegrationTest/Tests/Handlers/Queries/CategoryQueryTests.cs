@@ -7,14 +7,14 @@ namespace CentavoControl.IntegrationTest.Tests.Handlers.Queries;
 
 public class CategoryQueryTests : IClassFixture<TestDatabaseFixture>
 {
-    private readonly ICategoryCommand _categoryCommand;
-    private readonly ICategoryQuery _categoryQuery;
+    private readonly ICategoryCommandHandler _categoryCommandHandler;
+    private readonly ICategoryQueryHandler _categoryQueryHandler;
     
     public CategoryQueryTests(TestDatabaseFixture fixture)
     {
         ICategoryRepository categoryRepository = new CategoryRepository(fixture.DbContext);
-        _categoryCommand = new CategoryCommandHandler(categoryRepository);
-        _categoryQuery = new CategoryQueryHandler(categoryRepository);
+        _categoryCommandHandler = new CategoryCommandHandler(categoryRepository);
+        _categoryQueryHandler = new CategoryQueryHandler(categoryRepository);
     }
     
     [Fact]
@@ -23,13 +23,13 @@ public class CategoryQueryTests : IClassFixture<TestDatabaseFixture>
         // Arrange
         var userId = "0741789C-C8B4-468F-BE98-CC7569D85918";
         var command = new AddCategoryCommand("Test Category","Income");
-        await _categoryCommand.AddCategoryAsync(command, CancellationToken.None);
+        await _categoryCommandHandler.AddCategoryAsync(command, CancellationToken.None);
         
         var query = new GetCategoryByUserIdQuery();
         query.SetUserId(userId);
         
         // Act
-        var categories = await _categoryQuery.GetCategoriesByUserIdAsync(query, CancellationToken.None);
+        var categories = await _categoryQueryHandler.GetCategoriesByUserIdAsync(query, CancellationToken.None);
         
         // Assert
         Assert.NotNull(categories);
@@ -42,13 +42,13 @@ public class CategoryQueryTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var command = new AddCategoryCommand("Test Category","Income");
-        var addedCategory = await _categoryCommand.AddCategoryAsync(command, CancellationToken.None);
+        var addedCategory = await _categoryCommandHandler.AddCategoryAsync(command, CancellationToken.None);
         
         var query = new GetCategoryByIdQuery();
         query.SetId(addedCategory.Id.ToString());
         
         // Act
-        var category = await _categoryQuery.GetCategoryByIdAsync(query, CancellationToken.None);
+        var category = await _categoryQueryHandler.GetCategoryByIdAsync(query, CancellationToken.None);
         
         // Assert
         Assert.NotNull(category);
@@ -69,12 +69,12 @@ public class CategoryQueryTests : IClassFixture<TestDatabaseFixture>
             new ("Groceries", "Expense")
         };
         foreach (var command in commands)
-            await _categoryCommand.AddCategoryAsync(command, CancellationToken.None);
+            await _categoryCommandHandler.AddCategoryAsync(command, CancellationToken.None);
         
         var query = new GetCategoryByTypeAndUserIdQuery(userId, nameof(ETransactionType.Income));
         
         // Act
-        var categories = (await _categoryQuery.GetCategoriesByTypeAndUserIdAsync(query, CancellationToken.None)).ToList();
+        var categories = (await _categoryQueryHandler.GetCategoriesByTypeAndUserIdAsync(query, CancellationToken.None)).ToList();
         
         // Assert
         Assert.NotNull(categories);

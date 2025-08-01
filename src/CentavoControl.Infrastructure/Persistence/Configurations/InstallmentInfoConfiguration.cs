@@ -1,4 +1,4 @@
-namespace CentavoControl.Infrastructure.Data.Configurations;
+namespace CentavoControl.Infrastructure.Persistence.Configurations;
 
 public class InstallmentInfoConfiguration : IEntityTypeConfiguration<InstallmentInfo>
 {
@@ -6,20 +6,20 @@ public class InstallmentInfoConfiguration : IEntityTypeConfiguration<Installment
     {
         builder.ToTable("InstallmentInfo");
 
-        builder.HasKey(e => e.PayableId);
-        builder.Property(e => e.PayableId)
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
             .ValueGeneratedNever();
         builder.Property(e => e.InstallmentNumber)
             .IsRequired();
         builder.Property(e => e.TotalInstallments)
             .IsRequired();
-        builder.Property(e => e.GroupId)
+        builder.Property(e => e.PayableId)
             .IsRequired();
         
         builder
             .HasOne(p => p.Payable)
-            .WithOne(i => i.InstallmentInfo)
-            .HasForeignKey<InstallmentInfo>(i => i.PayableId)
+            .WithMany(i => i.InstallmentInfo)
+            .HasForeignKey(i => i.PayableId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

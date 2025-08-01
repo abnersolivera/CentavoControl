@@ -1,4 +1,4 @@
-﻿namespace CentavoControl.Infrastructure.Data.Configurations;
+﻿namespace CentavoControl.Infrastructure.Persistence.Configurations;
 
 public class CreditCardConfiguration : IEntityTypeConfiguration<CreditCard>
 {

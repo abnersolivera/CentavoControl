@@ -170,14 +170,14 @@ namespace CentavoControl.Infrastructure.Persistence.Migrations
                 name: "InstallmentInfo",
                 columns: table => new
                 {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PayableId = table.Column<Guid>(type: "uuid", nullable: false),
                     InstallmentNumber = table.Column<int>(type: "integer", nullable: false),
-                    TotalInstallments = table.Column<int>(type: "integer", nullable: false),
-                    GroupId = table.Column<Guid>(type: "uuid", nullable: false)
+                    TotalInstallments = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InstallmentInfo", x => x.PayableId);
+                    table.PrimaryKey("PK_InstallmentInfo", x => x.Id);
                     table.ForeignKey(
                         name: "FK_InstallmentInfo_Payable_PayableId",
                         column: x => x.PayableId,
@@ -246,6 +246,11 @@ namespace CentavoControl.Infrastructure.Persistence.Migrations
                 name: "IX_CreditCardInstallment_CreditCardExpenseId",
                 table: "CreditCardInstallment",
                 column: "CreditCardExpenseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_InstallmentInfo_PayableId",
+                table: "InstallmentInfo",
+                column: "PayableId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payable_AccountId",

@@ -7,14 +7,14 @@ namespace CentavoControl.IntegrationTest.Tests.Handlers.Commands;
 
 public class CategoryCommandHandlerTests : IClassFixture<TestDatabaseFixture>
 {
-    private readonly ICategoryCommand _categoryCommand;
-    private readonly ICategoryQuery _categoryQuery;
+    private readonly ICategoryCommandHandler _categoryCommandHandler;
+    private readonly ICategoryQueryHandler _categoryQueryHandler;
     
     public CategoryCommandHandlerTests(TestDatabaseFixture fixture)
     {
         ICategoryRepository categoryRepository = new CategoryRepository(fixture.DbContext);
-        _categoryCommand = new CategoryCommandHandler(categoryRepository);
-        _categoryQuery = new CategoryQueryHandler(categoryRepository);
+        _categoryCommandHandler = new CategoryCommandHandler(categoryRepository);
+        _categoryQueryHandler = new CategoryQueryHandler(categoryRepository);
     }
     
     [Fact]
@@ -24,7 +24,7 @@ public class CategoryCommandHandlerTests : IClassFixture<TestDatabaseFixture>
         var command = new AddCategoryCommand("New Category", "Income");
         
         // Act
-        var category = await _categoryCommand.AddCategoryAsync(command, CancellationToken.None);
+        var category = await _categoryCommandHandler.AddCategoryAsync(command, CancellationToken.None);
         
         // Assert
         Assert.NotNull(category);
@@ -37,13 +37,13 @@ public class CategoryCommandHandlerTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var addCommand = new AddCategoryCommand("Test Category", "Income");
-        var addedCategory = await _categoryCommand.AddCategoryAsync(addCommand, CancellationToken.None);
+        var addedCategory = await _categoryCommandHandler.AddCategoryAsync(addCommand, CancellationToken.None);
         
         var updateCommand = new UpdateCategoryCommand("Updated Category", "Expense");
         updateCommand.SetCategoryId(addedCategory.Id.ToString());
         
         // Act
-        var updatedCategory = await _categoryCommand.UpdateCategoryAsync(updateCommand, CancellationToken.None);
+        var updatedCategory = await _categoryCommandHandler.UpdateCategoryAsync(updateCommand, CancellationToken.None);
         
         // Assert
         Assert.NotNull(updatedCategory);
@@ -56,16 +56,16 @@ public class CategoryCommandHandlerTests : IClassFixture<TestDatabaseFixture>
     {
         // Arrange
         var addCommand = new AddCategoryCommand("Test Category", "Income");
-        var addedCategory = await _categoryCommand.AddCategoryAsync(addCommand, CancellationToken.None);
+        var addedCategory = await _categoryCommandHandler.AddCategoryAsync(addCommand, CancellationToken.None);
         
         var deleteCommand = new DeleteCategoryCommand();
         deleteCommand.SetCategoryId(addedCategory.Id.ToString());
         
         // Act
-        await _categoryCommand.DeleteCategoryAsync(deleteCommand, CancellationToken.None);
+        await _categoryCommandHandler.DeleteCategoryAsync(deleteCommand, CancellationToken.None);
         var queryCategory = new GetCategoryByIdQuery();
         queryCategory.SetId(addedCategory.Id.ToString());
-        var categories = await _categoryQuery.GetCategoryByIdAsync(queryCategory, CancellationToken.None);
+        var categories = await _categoryQueryHandler.GetCategoryByIdAsync(queryCategory, CancellationToken.None);
         
         // Assert
         Assert.Null(categories);

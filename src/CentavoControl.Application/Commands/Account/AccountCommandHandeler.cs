@@ -2,7 +2,7 @@ using CentavoControl.Application.ViewModels;
 
 namespace CentavoControl.Application.Commands.Account;
 
-public class AccountCommandHandler(IAccountRepository repository) : IAccountCommand
+public class AccountCommandHandeler(IAccountRepository repository) : IAccountCommandHandeler
 {
     public async Task<AccountViewModel> AddAccountAsync(AddAccountCommand command, CancellationToken cancellationToken)
     {

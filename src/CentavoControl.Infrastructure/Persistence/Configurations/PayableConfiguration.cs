@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using CentavoControl.Domain.Entities;
-
-namespace CentavoControl.Infrastructure.Data.Configurations;
+﻿namespace CentavoControl.Infrastructure.Persistence.Configurations;
 
 public class PayableConfiguration : IEntityTypeConfiguration<Payable>
 {
@@ -49,9 +45,9 @@ public class PayableConfiguration : IEntityTypeConfiguration<Payable>
             .OnDelete(DeleteBehavior.Restrict);
         
         builder
-            .HasOne(p => p.InstallmentInfo)
+            .HasMany(i => i.InstallmentInfo)
             .WithOne(i => i.Payable)
-            .HasForeignKey<InstallmentInfo>(r => r.PayableId)
+            .HasForeignKey(r => r.PayableId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

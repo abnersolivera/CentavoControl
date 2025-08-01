@@ -4,3 +4,5 @@ global using FluentValidation;
 global using CentavoControl.Application.Commands.Category;
 global using CentavoControl.Domain.Enums;
 global using CentavoControl.Application.Commands.Account;
+global using CentavoControl.Application.Queries.Account;
+global using CentavoControl.Application.Queries.Category;

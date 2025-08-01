@@ -66,7 +66,7 @@
             Controlador de conta para gerenciar operações relacionadas à conta do usuário.
             </summary>
         </member>
-        <member name="M:CentavoControl.Controllers.AccountController.#ctor(CentavoControl.Application.Commands.Account.IAccountCommand,CentavoControl.Application.Queries.Account.IAccountQuery,CentavoControl.Domain.Interfaces.Repositories.IAccountRepository,Microsoft.Extensions.Logging.ILogger{CentavoControl.Controllers.AccountController})">
+        <member name="M:CentavoControl.Controllers.AccountController.#ctor(CentavoControl.Application.Commands.Account.IAccountCommandHandeler,CentavoControl.Application.Queries.Account.IAccountQueryHandler,CentavoControl.Domain.Interfaces.Repositories.IAccountRepository,Microsoft.Extensions.Logging.ILogger{CentavoControl.Controllers.AccountController})">
             <summary>
             Controlador de conta para gerenciar operações relacionadas à conta do usuário.
             </summary>
@@ -117,7 +117,7 @@
             Controlador de categoria para gerenciar operações relacionadas às categorias do usuário.
             </summary>
         </member>
-        <member name="M:CentavoControl.Controllers.CategoryController.#ctor(CentavoControl.Application.Commands.Category.CategoryCommandHandler,CentavoControl.Application.Queries.Category.CategoryQueryHandler)">
+        <member name="M:CentavoControl.Controllers.CategoryController.#ctor(CentavoControl.Application.Commands.Category.ICategoryCommandHandler,CentavoControl.Application.Queries.Category.ICategoryQueryHandler)">
             <summary>
             Controlador de categoria para gerenciar operações relacionadas às categorias do usuário.
             </summary>

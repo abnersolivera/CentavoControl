@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using CentavoControl.Domain.Entities;
-
-namespace CentavoControl.Infrastructure.Data.Configurations;
+﻿namespace CentavoControl.Infrastructure.Persistence.Configurations;
 
 public class CreditCardInstallmentConfiguration : IEntityTypeConfiguration<CreditCardInstallment>
 {

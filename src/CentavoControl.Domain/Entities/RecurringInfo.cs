@@ -17,5 +17,5 @@ public class RecurringInfo
     public Guid PayableId { get; private set; }
     public string RecurrenceType { get; private set; }
     public Guid RecurrenceGroupId { get; private set; }
-    public Payable Payable { get; set; }
+    public Payable Payable { get; private set; }
 }

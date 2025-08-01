@@ -14,8 +14,8 @@ public class Payable
     public Category Category { get; private set; }
     public string UserId { get; private set; }
     
-    public RecurringInfo? RecurringInfo { get; set; }
-    public InstallmentInfo? InstallmentInfo { get; set; }
+    public RecurringInfo? RecurringInfo { get; private set; }
+    public ICollection<InstallmentInfo>? InstallmentInfo { get; private set; }
 
     protected Payable()
     {
@@ -27,37 +27,26 @@ public class Payable
         string description,
         decimal amount,
         DateTime dueDate,
-        bool isPaid,
         Guid accountId,
         Guid categoryId,
-        string userId)
+        string userId,
+        RecurringInfo? recurringInfo = null,
+        ICollection<InstallmentInfo>? installmentInfo = null)
     {
-        if (string.IsNullOrWhiteSpace(description))
-            throw new ArgumentException("Description cannot be empty.", nameof(description));
-
-        if (amount <= 0)
-            throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be greater than zero.");
-
-        if (string.IsNullOrWhiteSpace(userId))
-            throw new ArgumentException("UserId cannot be empty.", nameof(userId));
-
         Id = id;
         Description = description;
         Amount = amount;
         DueDate = dueDate;
-        IsPaid = isPaid;
+        IsPaid = false;
         AccountId = accountId;
         CategoryId = categoryId;
         UserId = userId;
+        RecurringInfo = recurringInfo;
+        InstallmentInfo = installmentInfo ?? new List<InstallmentInfo>();
     }
 
     public void MarkAsPaid()
     {
         IsPaid = true;
-    }
-
-    public void MarkAsUnpaid()
-    {
-        IsPaid = false;
     }
 }

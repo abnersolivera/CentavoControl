@@ -3,7 +3,7 @@ using CentavoControl.Domain.Enums;
 
 namespace CentavoControl.Application.Queries.Category;
 
-public class CategoryQueryHandler(ICategoryRepository repository) : ICategoryQuery
+public class CategoryQueryHandler(ICategoryRepository repository) : ICategoryQueryHandler
 {
     public async Task<CategoryViewModel?> GetCategoryByIdAsync(GetCategoryByIdQuery query,
         CancellationToken cancellationToken)
