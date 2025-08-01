@@ -4,7 +4,7 @@ public class PayableRepository(DataContext context) : IPayableRepository
 {
     public async Task<Payable?> GetByIdAsync(Guid id, CancellationToken cancellation)
     {
-        return await context.Payables.FindAsync(id);
+        return await context.Payables.FindAsync([id, cancellation], cancellation);
     }
 
     public async Task<IEnumerable<Payable>> GetByUserIdAsync(string userId, CancellationToken cancellation)
