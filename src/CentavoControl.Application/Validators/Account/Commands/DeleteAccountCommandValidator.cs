@@ -1,5 +1,3 @@
-using CentavoControl.Application.Commands.Account;
-
 namespace CentavoControl.Application.Validators.Account.Commands;
 
 /// <summary>
@@ -12,10 +10,6 @@ public class DeleteAccountCommandValidator : AbstractValidator<DeleteAccountComm
     /// </summary>
     public DeleteAccountCommandValidator(IAccountRepository repository)
     {
-        RuleFor(x => x.GetAccountId())
-            .NotEmpty()
-            .WithMessage("Id is required.");
-        
         RuleFor(x => x)
             .MustAsync(async (command, cancellation) =>
             {

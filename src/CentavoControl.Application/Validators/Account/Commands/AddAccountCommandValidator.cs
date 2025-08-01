@@ -1,5 +1,3 @@
-using CentavoControl.Application.Commands.Account;
-
 namespace CentavoControl.Application.Validators.Account.Commands;
 
 /// <summary>
@@ -13,6 +11,8 @@ public class AddAccountCommandValidator : AbstractValidator<AddAccountCommand>
     public AddAccountCommandValidator()
     {
         RuleFor(x => x.Name)
+            .NotNull()
+            .WithMessage("Name cannot be null.")
             .NotEmpty()
             .WithMessage("Name is required.")
             .MaximumLength(100)
