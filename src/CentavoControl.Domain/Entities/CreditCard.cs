@@ -11,7 +11,7 @@ public class CreditCard
     public Guid AccountId { get; private set; }
     public string UserId { get; private set; }
 
-    private CreditCard()
+    protected CreditCard()
     {
         
     }

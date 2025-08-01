@@ -6,17 +6,20 @@ public class Category
     public string Name { get; private set; }
     public ETransactionType Type { get; private set; }
     public string UserId { get; private set; }
+    public ICollection<Payable>? Payables { get; private set; }
 
-    private Category()
+    protected Category()
     {
         
     }
-    public Category(Guid id, string name, ETransactionType type, string userId)
+    
+    public Category(Guid id, string name, ETransactionType type, string userId, ICollection<Payable>? payables = null)
     {
         Id = id;
         Name = name;
         Type = type;
         UserId = userId;
+        Payables = payables ?? new List<Payable>();
     }
     
     public void Update(string name, ETransactionType type)

@@ -1,4 +1,4 @@
-﻿namespace CentavoControl.Infrastructure.Data;
+﻿namespace CentavoControl.Infrastructure.Persistence;
 
 public class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
 {
@@ -10,6 +10,8 @@ public class DataContext(DbContextOptions<DataContext> options) : DbContext(opti
     public DbSet<CreditCardExpense> CreditCardExpenses { get; set; }
     public DbSet<CreditCardInstallment> CreditCardInstallments { get; set; }
     public DbSet<Payable> Payables { get; set; }
+    public DbSet<InstallmentInfo> InstallmentInfos { get; set; }
+    public DbSet<RecurringInfo> RecurringInfos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

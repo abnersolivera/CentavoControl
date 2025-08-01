@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace CentavoControl.Infrastructure.Migrations
+namespace CentavoControl.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
@@ -167,6 +167,45 @@ namespace CentavoControl.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InstallmentInfo",
+                columns: table => new
+                {
+                    PayableId = table.Column<Guid>(type: "uuid", nullable: false),
+                    InstallmentNumber = table.Column<int>(type: "integer", nullable: false),
+                    TotalInstallments = table.Column<int>(type: "integer", nullable: false),
+                    GroupId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InstallmentInfo", x => x.PayableId);
+                    table.ForeignKey(
+                        name: "FK_InstallmentInfo_Payable_PayableId",
+                        column: x => x.PayableId,
+                        principalTable: "Payable",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecurringInfo",
+                columns: table => new
+                {
+                    PayableId = table.Column<Guid>(type: "uuid", nullable: false),
+                    RecurrenceType = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    RecurrenceGroupId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecurringInfo", x => x.PayableId);
+                    table.ForeignKey(
+                        name: "FK_RecurringInfo_Payable_PayableId",
+                        column: x => x.PayableId,
+                        principalTable: "Payable",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CreditCardInstallment",
                 columns: table => new
                 {
@@ -236,7 +275,10 @@ namespace CentavoControl.Infrastructure.Migrations
                 name: "CreditCardInstallment");
 
             migrationBuilder.DropTable(
-                name: "Payable");
+                name: "InstallmentInfo");
+
+            migrationBuilder.DropTable(
+                name: "RecurringInfo");
 
             migrationBuilder.DropTable(
                 name: "Transaction");
@@ -248,10 +290,13 @@ namespace CentavoControl.Infrastructure.Migrations
                 name: "CreditCardExpense");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Payable");
 
             migrationBuilder.DropTable(
                 name: "CreditCard");
+
+            migrationBuilder.DropTable(
+                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "Account");

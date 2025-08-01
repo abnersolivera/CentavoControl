@@ -1,6 +1,7 @@
 using CentavoControl.Application.Commands.Category;
 using CentavoControl.Application.Queries.Category;
 using CentavoControl.Domain.Enums;
+using CentavoControl.Infrastructure.Persistence.Repositories;
 
 namespace CentavoControl.IntegrationTest.Tests.Handlers.Queries;
 

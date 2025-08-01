@@ -1,4 +1,4 @@
-namespace CentavoControl.Infrastructure.Repositories;
+namespace CentavoControl.Infrastructure.Persistence.Repositories;
 
 public class AccountRepository(DataContext context) : IAccountRepository
 {

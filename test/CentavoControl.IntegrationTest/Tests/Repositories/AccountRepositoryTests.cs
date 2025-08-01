@@ -1,3 +1,5 @@
+using CentavoControl.Infrastructure.Persistence.Repositories;
+
 namespace CentavoControl.IntegrationTest.Tests.Repositories;
 
 public class AccountRepositoryTests(TestDatabaseFixture fixture) : IClassFixture<TestDatabaseFixture>

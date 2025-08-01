@@ -1,4 +1,5 @@
 using CentavoControl.Domain.Enums;
+using CentavoControl.Infrastructure.Persistence.Repositories;
 
 namespace CentavoControl.IntegrationTest.Tests.Repositories;
 

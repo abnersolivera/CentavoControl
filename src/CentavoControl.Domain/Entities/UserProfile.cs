@@ -6,7 +6,7 @@ public class UserProfile
     public string? DisplayName { get; private set; }
     public string? Email { get; private set; }
 
-    private UserProfile()
+    protected UserProfile()
     {
         
     }

@@ -29,13 +29,29 @@ public class PayableConfiguration : IEntityTypeConfiguration<Payable>
         builder.Property(p => p.UserId)
             .HasMaxLength(100)
             .IsRequired();
-        builder.HasOne<Account>()
-            .WithMany()
+        
+        builder
+            .HasOne(a => a.Account)
+            .WithMany(p => p.Payables)
             .HasForeignKey(p => p.AccountId)
             .OnDelete(DeleteBehavior.Restrict);
-        builder.HasOne<Category>()
-            .WithMany()
+        
+        builder
+            .HasOne(c => c.Category)
+            .WithMany(p => p.Payables)
             .HasForeignKey(p => p.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder
+            .HasOne(p => p.RecurringInfo)
+            .WithOne(r => r.Payable)
+            .HasForeignKey<RecurringInfo>(r => r.PayableId)
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        builder
+            .HasOne(p => p.InstallmentInfo)
+            .WithOne(i => i.Payable)
+            .HasForeignKey<InstallmentInfo>(r => r.PayableId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

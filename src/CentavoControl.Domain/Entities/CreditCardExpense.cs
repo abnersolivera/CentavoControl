@@ -12,7 +12,7 @@ public class CreditCardExpense
     public Guid CategoryId { get; private set; }
     public string UserId { get; private set; }
 
-    private CreditCardExpense()
+    protected CreditCardExpense()
     {
         
     }

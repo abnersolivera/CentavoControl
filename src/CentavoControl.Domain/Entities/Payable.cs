@@ -9,10 +9,15 @@ public class Payable
     public bool IsPaid { get; private set; }
 
     public Guid AccountId { get; private set; }
+    public Account Account { get; private set; }
     public Guid CategoryId { get; private set; }
+    public Category Category { get; private set; }
     public string UserId { get; private set; }
+    
+    public RecurringInfo? RecurringInfo { get; set; }
+    public InstallmentInfo? InstallmentInfo { get; set; }
 
-    private Payable()
+    protected Payable()
     {
         
     }

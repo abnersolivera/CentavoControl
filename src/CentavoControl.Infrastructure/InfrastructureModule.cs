@@ -1,4 +1,5 @@
-﻿using CentavoControl.Infrastructure.Repositories;
+﻿using CentavoControl.Infrastructure.Persistence;
+using CentavoControl.Infrastructure.Persistence.Repositories;
 
 namespace CentavoControl.Infrastructure;
 

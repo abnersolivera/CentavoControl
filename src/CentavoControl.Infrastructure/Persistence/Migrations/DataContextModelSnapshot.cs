@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace CentavoControl.Infrastructure.Migrations
+namespace CentavoControl.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -172,6 +172,25 @@ namespace CentavoControl.Infrastructure.Migrations
                     b.ToTable("CreditCardInstallment", (string)null);
                 });
 
+            modelBuilder.Entity("CentavoControl.Domain.Entities.InstallmentInfo", b =>
+                {
+                    b.Property<Guid>("PayableId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("GroupId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("InstallmentNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TotalInstallments")
+                        .HasColumnType("integer");
+
+                    b.HasKey("PayableId");
+
+                    b.ToTable("InstallmentInfo", (string)null);
+                });
+
             modelBuilder.Entity("CentavoControl.Domain.Entities.Payable", b =>
                 {
                     b.Property<Guid>("Id")
@@ -209,6 +228,24 @@ namespace CentavoControl.Infrastructure.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Payable", (string)null);
+                });
+
+            modelBuilder.Entity("CentavoControl.Domain.Entities.RecurringInfo", b =>
+                {
+                    b.Property<Guid>("PayableId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RecurrenceGroupId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("RecurrenceType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("PayableId");
+
+                    b.ToTable("RecurringInfo", (string)null);
                 });
 
             modelBuilder.Entity("CentavoControl.Domain.Entities.Transaction", b =>
@@ -303,19 +340,45 @@ namespace CentavoControl.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CentavoControl.Domain.Entities.InstallmentInfo", b =>
+                {
+                    b.HasOne("CentavoControl.Domain.Entities.Payable", "Payable")
+                        .WithOne("InstallmentInfo")
+                        .HasForeignKey("CentavoControl.Domain.Entities.InstallmentInfo", "PayableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Payable");
+                });
+
             modelBuilder.Entity("CentavoControl.Domain.Entities.Payable", b =>
                 {
-                    b.HasOne("CentavoControl.Domain.Entities.Account", null)
-                        .WithMany()
+                    b.HasOne("CentavoControl.Domain.Entities.Account", "Account")
+                        .WithMany("Payables")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("CentavoControl.Domain.Entities.Category", null)
-                        .WithMany()
+                    b.HasOne("CentavoControl.Domain.Entities.Category", "Category")
+                        .WithMany("Payables")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("CentavoControl.Domain.Entities.RecurringInfo", b =>
+                {
+                    b.HasOne("CentavoControl.Domain.Entities.Payable", "Payable")
+                        .WithOne("RecurringInfo")
+                        .HasForeignKey("CentavoControl.Domain.Entities.RecurringInfo", "PayableId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Payable");
                 });
 
             modelBuilder.Entity("CentavoControl.Domain.Entities.Transaction", b =>
@@ -331,6 +394,23 @@ namespace CentavoControl.Infrastructure.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CentavoControl.Domain.Entities.Account", b =>
+                {
+                    b.Navigation("Payables");
+                });
+
+            modelBuilder.Entity("CentavoControl.Domain.Entities.Category", b =>
+                {
+                    b.Navigation("Payables");
+                });
+
+            modelBuilder.Entity("CentavoControl.Domain.Entities.Payable", b =>
+                {
+                    b.Navigation("InstallmentInfo");
+
+                    b.Navigation("RecurringInfo");
                 });
 #pragma warning restore 612, 618
         }

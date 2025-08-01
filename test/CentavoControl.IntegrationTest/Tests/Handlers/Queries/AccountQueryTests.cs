@@ -1,5 +1,6 @@
 using CentavoControl.Application.Commands.Account;
 using CentavoControl.Application.Queries.Account;
+using CentavoControl.Infrastructure.Persistence.Repositories;
 
 namespace CentavoControl.IntegrationTest.Tests.Handlers.Queries;
 
