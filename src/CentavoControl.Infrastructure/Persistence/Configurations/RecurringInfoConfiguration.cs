@@ -10,7 +10,7 @@ public class RecurringInfoConfiguration : IEntityTypeConfiguration<RecurringInfo
         builder.Property(e => e.PayableId)
             .ValueGeneratedNever();
         builder.Property(e => e.RecurrenceType)
-            .HasMaxLength(50)
+            .HasConversion<string>()
             .IsRequired();
         builder.Property(e => e.RecurrenceGroupId)
             .IsRequired();

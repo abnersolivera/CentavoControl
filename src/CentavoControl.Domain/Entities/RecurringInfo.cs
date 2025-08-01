@@ -7,7 +7,7 @@ public class RecurringInfo
         
     }
     
-    public RecurringInfo(Guid payableId, string recurrenceType, Guid recurrenceGroupId, Payable payable)
+    public RecurringInfo(Guid payableId, ERecurrenceType recurrenceType, Guid recurrenceGroupId, Payable payable)
     {
         PayableId = payableId;
         RecurrenceType = recurrenceType;
@@ -15,7 +15,7 @@ public class RecurringInfo
         Payable = payable;
     }
     public Guid PayableId { get; private set; }
-    public string RecurrenceType { get; private set; }
+    public ERecurrenceType RecurrenceType { get; private set; }
     public Guid RecurrenceGroupId { get; private set; }
     public Payable Payable { get; private set; }
 }

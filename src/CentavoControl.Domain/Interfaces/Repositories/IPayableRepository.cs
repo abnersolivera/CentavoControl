@@ -2,10 +2,9 @@
 
 public interface IPayableRepository
 {
-    Task<Payable?> GetByIdAsync(Guid id);
-    Task<IEnumerable<Payable>> GetByUserIdAsync(string userId);
-    Task<IEnumerable<Payable>> GetByAccountIdAsync(Guid accountId);
-    Task AddAsync(Payable payable);
-    Task UpdateAsync(Payable payable);
-    Task DeleteAsync(Guid id);
+    Task<Payable?> GetByIdAsync(Guid id, CancellationToken cancellation);
+    Task<IEnumerable<Payable>> GetByUserIdAsync(string userId, CancellationToken cancellation);
+    Task AddAsync(Payable payable, CancellationToken cancellation);
+    Task UpdateAsync(Payable payable, CancellationToken cancellation);
+    Task DeleteAsync(Guid id, CancellationToken cancellation);
 }

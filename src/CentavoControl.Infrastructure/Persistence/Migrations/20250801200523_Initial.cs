@@ -191,7 +191,7 @@ namespace CentavoControl.Infrastructure.Persistence.Migrations
                 columns: table => new
                 {
                     PayableId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecurrenceType = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    RecurrenceType = table.Column<string>(type: "text", nullable: false),
                     RecurrenceGroupId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>

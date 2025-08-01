@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CentavoControl.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250801193853_Initial")]
+    [Migration("20250801200523_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -245,8 +245,7 @@ namespace CentavoControl.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("RecurrenceType")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.HasKey("PayableId");
 

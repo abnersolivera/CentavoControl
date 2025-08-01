@@ -2,44 +2,37 @@ namespace CentavoControl.Infrastructure.Persistence.Repositories;
 
 public class PayableRepository(DataContext context) : IPayableRepository
 {
-    public async Task<Payable?> GetByIdAsync(Guid id)
+    public async Task<Payable?> GetByIdAsync(Guid id, CancellationToken cancellation)
     {
-        return await context.Set<Payable>().FindAsync(id);
+        return await context.Payables.FindAsync(id);
     }
 
-    public async Task<IEnumerable<Payable>> GetByUserIdAsync(string userId)
+    public async Task<IEnumerable<Payable>> GetByUserIdAsync(string userId, CancellationToken cancellation)
     {
-        return await context.Set<Payable>()
+        return await context.Payables
             .Where(p => p.UserId == userId)
-            .ToListAsync();
+            .ToListAsync(cancellation);
     }
 
-    public async Task<IEnumerable<Payable>> GetByAccountIdAsync(Guid accountId)
+    public async Task AddAsync(Payable payable, CancellationToken cancellation)
     {
-        return await context.Set<Payable>()
-            .Where(p => p.AccountId == accountId)
-            .ToListAsync();
+        await context.Payables.AddAsync(payable, cancellation);
+        await context.SaveChangesAsync(cancellation);
     }
 
-    public async Task AddAsync(Payable payable)
+    public async Task UpdateAsync(Payable payable, CancellationToken cancellation)
     {
-        await context.Set<Payable>().AddAsync(payable);
-        await context.SaveChangesAsync();
+        context.Payables.Update(payable);
+        await context.SaveChangesAsync(cancellation);
     }
 
-    public async Task UpdateAsync(Payable payable)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellation)
     {
-        context.Set<Payable>().Update(payable);
-        await context.SaveChangesAsync();
-    }
-
-    public async Task DeleteAsync(Guid id)
-    {
-        var payable = await GetByIdAsync(id);
+        var payable = await GetByIdAsync(id, cancellation);
         if (payable != null)
         {
-            context.Set<Payable>().Remove(payable);
-            await context.SaveChangesAsync();
+            context.Payables.Remove(payable);
+            await context.SaveChangesAsync(cancellation);
         }
     }
 }

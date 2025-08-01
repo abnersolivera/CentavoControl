@@ -1,4 +1,3 @@
-using CentavoControl.Infrastructure.Data;
 using CentavoControl.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Testcontainers.PostgreSql;
