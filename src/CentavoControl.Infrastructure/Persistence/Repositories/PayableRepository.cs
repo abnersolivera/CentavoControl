@@ -14,6 +14,20 @@ public class PayableRepository(DataContext context) : IPayableRepository
             .ToListAsync(cancellation);
     }
 
+    public async Task<IEnumerable<Payable>> GetByAccountIdAsync(Guid accountId, string userId, CancellationToken cancellation)
+    {
+        return await context.Payables
+            .Where(p => p.AccountId == accountId && p.UserId == userId)
+            .ToListAsync(cancellation);
+    }
+
+    public async Task<IEnumerable<Payable>> GetByCategoryIdAsync(Guid categoryId, string userId, CancellationToken cancellation)
+    {
+        return await context.Payables
+            .Where(p => p.CategoryId == categoryId && p.UserId == userId)
+            .ToListAsync(cancellation);
+    }
+
     public async Task AddAsync(Payable payable, CancellationToken cancellation)
     {
         await context.Payables.AddAsync(payable, cancellation);

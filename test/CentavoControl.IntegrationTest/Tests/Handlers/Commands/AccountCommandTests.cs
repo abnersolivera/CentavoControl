@@ -12,7 +12,7 @@ public class AccountCommandTests : IClassFixture<TestDatabaseFixture>
     public AccountCommandTests(TestDatabaseFixture fixture)
     {
         IAccountRepository accountRepository = new AccountRepository(fixture.DbContext);
-        _accountCommandHandeler = new AccountCommandHandeler(accountRepository);
+        _accountCommandHandeler = new AccountCommandHandler(accountRepository);
         _accountQueryHandler = new AccountQueryHandler(accountRepository);
     }
     

@@ -1,3 +1,6 @@
+using CentavoControl.Application.Commands.Payable;
+using CentavoControl.Application.Queries.Payable;
+
 namespace CentavoControl.Application;
 
 public static class ApplicationModule
@@ -13,10 +16,12 @@ public static class ApplicationModule
     
     private static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IAccountCommandHandeler, AccountCommandHandeler>();
+        services.AddScoped<IAccountCommandHandeler, AccountCommandHandler>();
         services.AddScoped<IAccountQueryHandler, AccountQueryHandler>();
         services.AddScoped<ICategoryCommandHandler, CategoryCommandHandler>();
         services.AddScoped<ICategoryQueryHandler, CategoryQueryHandler>();
+        services.AddScoped<IPayableCommandHandler, PayableCommandHandler>();
+        services.AddScoped<IPayableQueryHandler, PayableQueryHandler>();
         
         return services;
     }
