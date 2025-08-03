@@ -175,6 +175,80 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
+        <member name="T:CentavoControl.Controllers.PayableController">
+            <summary>
+            Controlador de contas a pagar para gerenciar operações relacionadas às contas a pagar do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.#ctor(CentavoControl.Application.Commands.Payable.IPayableCommandHandler,CentavoControl.Application.Queries.Payable.IPayableQueryHandler)">
+            <summary>
+            Controlador de contas a pagar para gerenciar operações relacionadas às contas a pagar do usuário.
+            </summary>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.GetPayableById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma conta a pagar pelo ID.
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.GetPayablesByUserId(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID do usuário.
+            </summary>
+            <param name="userId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.GetPayablesByAccountId(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID da conta.
+            </summary>
+            <param name="accountId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.GetPayablesByCategoryId(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID da categoria.
+            </summary>
+            <param name="categoryId"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.AddPayable(CentavoControl.Application.Commands.Payable.AddPayableCommand,System.Threading.CancellationToken)">
+            <summary>
+            Adiciona uma nova conta a pagar com base nos dados fornecidos no comando.
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.UpdatePayable(CentavoControl.Application.Commands.Payable.UpdatePayableCommand,System.Threading.CancellationToken)">
+            <summary>
+            Atualiza uma conta a pagar existente com base nos dados fornecidos no comando.
+            </summary>
+            <param name="command"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.MarkAsPaid(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Atualiza uma conta a pagar como status pago.
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CentavoControl.Controllers.PayableController.DeletePayable(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Exclui uma conta a pagar com base no ID fornecido.
+            </summary>
+            <param name="id"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="T:CentavoControl.Program">
             <summary>
             Classe partial para configuração do Program (utilizado para testes de integração)
