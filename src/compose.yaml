@@ -1,0 +1,7 @@
+﻿services:
+  centavocontrol:
+    image: centavocontrol
+    build:
+      context: .
+      dockerfile: CentavoControl/Dockerfile
+

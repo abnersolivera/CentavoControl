@@ -1,5 +1,3 @@
-using CentavoControl.Domain.Enums;
-
 namespace CentavoControl.Application.Commands.Category;
 
 public class AddCategoryCommand(string name, string type)
