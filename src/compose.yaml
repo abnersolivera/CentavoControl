@@ -1,6 +1,12 @@
-﻿services:
+﻿version: '3.4'
+
+services:
   centavocontrol:
     image: centavocontrol
+    ports:
+      - "5000:5000"
+    environment:
+      ASPNETCORE_URLS: "http://+:5000"
     build:
       context: .
       dockerfile: CentavoControl/Dockerfile
