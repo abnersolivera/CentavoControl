@@ -90,8 +90,8 @@ public class PayableCommandHandlerTests : IClassFixture<TestDatabaseFixture>
         // Act
         await _payableCommandHandler.DeletePayableAsync(command, CancellationToken.None);
 
-        var query = new GetPayableByIdQuery(payable.Id);
-        var deletedPayable = await _payableQueryHandler.GetPayableByIdAsync(query, CancellationToken.None);
+        var query = new GetPayableQuery(payable.Id);
+        var deletedPayable = await _payableQueryHandler.GetPayableAsync(query, CancellationToken.None);
         // Assert
         Assert.Null(deletedPayable);
     }

@@ -13,61 +13,15 @@ public class PayableController(IPayableCommandHandler commandHandler, IPayableQu
     /// <summary>
     /// Obtém uma conta a pagar pelo ID.
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="query"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetPayableById([FromRoute] Guid id,
+    [HttpGet]
+    public async Task<IActionResult> GetPayableById([FromQuery] GetPayableQuery query,
         CancellationToken cancellationToken)
     {
-        var command = new GetPayableByIdQuery(id);
-        var payable = await queryHandler.GetPayableByIdAsync(command, cancellationToken);
+        var payable = await queryHandler.GetPayableAsync(query, cancellationToken);
         return Ok(payable);
-    }
-    
-    /// <summary>
-    /// Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID do usuário.
-    /// </summary>
-    /// <param name="userId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpGet("User/{userId}")]
-    public async Task<IActionResult> GetPayablesByUserId([FromRoute] string userId,
-        CancellationToken cancellationToken)
-    {
-        var command = new GetPayableByUserIdQuery(userId);
-        var payables = await queryHandler.GetAllPayablesAsync(command, cancellationToken);
-        return Ok(payables);
-    }
-    
-    /// <summary>
-    /// Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID da conta.
-    /// </summary>
-    /// <param name="accountId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpGet("Account/{accountId:guid}")]
-    public async Task<IActionResult> GetPayablesByAccountId([FromRoute] Guid accountId,
-        CancellationToken cancellationToken)
-    {
-        var command = new GetPayableByAccountIdQuery(accountId);
-        var payables = await queryHandler.GetPayablesByAccountIdAsync(command, cancellationToken);
-        return Ok(payables);
-    }
-    
-    /// <summary>
-    /// Obtém uma lista de contas a pagar associadas a um usuário específico pelo ID da categoria.
-    /// </summary>
-    /// <param name="categoryId"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpGet("Category/{categoryId:guid}")]
-    public async Task<IActionResult> GetPayablesByCategoryId([FromRoute] Guid categoryId,
-        CancellationToken cancellationToken)
-    {
-        var command = new GetPayableByCategoryIdQuery(categoryId);
-        var payables = await queryHandler.GetPayablesByCategoryIdAsync(command, cancellationToken);
-        return Ok(payables);
     }
     
     /// <summary>
