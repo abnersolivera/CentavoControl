@@ -34,7 +34,7 @@ public class PayableRepository(DataContext context) : IPayableRepository
             query = query.Where(p => p.UserId == userId);
         }
 
-        query = query.Where(p => p.IsPaid);
+        query = query.Where(p => p.IsPaid == isPaid);
 
         return await query
             .Skip((page - 1) * rows)

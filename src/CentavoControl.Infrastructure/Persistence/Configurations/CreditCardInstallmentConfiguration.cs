@@ -14,6 +14,7 @@ public class CreditCardInstallmentConfiguration : IEntityTypeConfiguration<Credi
             .HasColumnType("decimal(18,2)")
             .IsRequired();
         builder.Property(x => x.DueDate)
+            .HasColumnType("date")
             .IsRequired();
         builder.Property(x => x.IsPaid)
             .IsRequired();

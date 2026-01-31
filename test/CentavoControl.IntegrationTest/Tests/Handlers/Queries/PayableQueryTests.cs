@@ -39,7 +39,7 @@ public class PayableQueryTests : IClassFixture<TestDatabaseFixture>
         var payableCommand = new AddPayableCommand("Test Payable", 200, DateTime.UtcNow, account.Id, category.Id);
         var payable = await _payableCommandHandler.AddPayableAsync(payableCommand, CancellationToken.None);
         
-        var query = new GetPayableQuery(payable.Id);
+        var query = new GetPayableQuery(payable.Id, null, null);
         
         // Act
         var payables = (await _payableQueryHandler.GetPayableAsync(query, CancellationToken.None) ?? []).ToList();

@@ -7,7 +7,7 @@ public class PayableQueryHandler(IPayableRepository repository) : IPayableQueryH
     public async Task<IEnumerable<PayableViewModel>?> GetPayableAsync(GetPayableQuery query,
         CancellationToken cancellationToken)
     {
-        var userId = "";
+        const string userId = "0741789C-C8B4-468F-BE98-CC7569D85918";
 
         var payable = (await repository.GetByFiltersAsync(query.Id, query.AccountId, query.CategoryId,
             userId, query.IsPaid, query.Page, query.Rows, cancellationToken)).ToList();

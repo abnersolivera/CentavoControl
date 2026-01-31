@@ -61,7 +61,7 @@ public class PayableCommandHandlerTests : IClassFixture<TestDatabaseFixture>
 
         var command = new UpdatePayableCommand("Updated Payable", 150.00m, DateTime.UtcNow.AddDays(15), account.Id,
             category.Id);
-        command.SetPayableId(payable.Id.ToString());
+        command.SetPayableId(payable.Id);
 
         // Act
         var updatedPayable = await _payableCommandHandler.UpdatePayableAsync(command, CancellationToken.None);
@@ -90,7 +90,7 @@ public class PayableCommandHandlerTests : IClassFixture<TestDatabaseFixture>
         // Act
         await _payableCommandHandler.DeletePayableAsync(command, CancellationToken.None);
 
-        var query = new GetPayableQuery(payable.Id);
+        var query = new GetPayableQuery(payable.Id, null, null);
         var deletedPayable = await _payableQueryHandler.GetPayableAsync(query, CancellationToken.None);
         // Assert
         Assert.Null(deletedPayable);

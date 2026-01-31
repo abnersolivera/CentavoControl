@@ -14,6 +14,6 @@ public class UpdatePayableCommand(
     public Guid AccountId { get; private set; } = accountId;
     public Guid CategoryId { get; private set; } = categoryId;
     
-    public void SetPayableId(string id) => _id = Guid.Parse(id);
+    public void SetPayableId(Guid id) => _id = id;
     public Guid GetPayableId() => _id;
 }

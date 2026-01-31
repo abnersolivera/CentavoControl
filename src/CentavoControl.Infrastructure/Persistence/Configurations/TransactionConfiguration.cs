@@ -12,6 +12,7 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             .HasColumnType("decimal(18,2)")
             .IsRequired();
         builder.Property(e => e.Date)
+            .HasColumnType("date")
             .IsRequired();
         builder.Property(e => e.Description)
             .HasMaxLength(200)
