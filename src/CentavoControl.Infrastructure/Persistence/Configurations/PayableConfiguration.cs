@@ -15,6 +15,7 @@ public class PayableConfiguration : IEntityTypeConfiguration<Payable>
             .HasColumnType("decimal(18,2)")
             .IsRequired();
         builder.Property(p => p.DueDate)
+            .HasColumnType("date")
             .IsRequired();
         builder.Property(p => p.IsPaid)
             .IsRequired();

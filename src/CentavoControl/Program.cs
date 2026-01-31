@@ -7,16 +7,19 @@ var config = builder.Configuration;
 builder.Services.ConfigureServices(config);
 builder.Services.ConfigureController();
 builder.Services.ConfigureEndpoints();
+
+#if DEBUG
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("Localhost8080", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:8080")
+            .AllowAnyHeader()
             .AllowAnyMethod()
-            .AllowAnyHeader();
+            .AllowCredentials();
     });
 });
-
+#endif
 
 #endregion
 
@@ -33,7 +36,9 @@ app.ConfigureSwagger();
 logger.LogInformation("Mapping endpoint ...");
 app.MapEndpoints(config);
 logger.LogInformation("Configuring authorization ...");
-app.UseCors("AllowAll");
+#if DEBUG
+app.UseCors("Localhost8080");
+#endif
 app.UseAuthorization();
 logger.LogInformation("Initializing server ...");
 app.Run();

@@ -40,13 +40,15 @@ public class PayableController(IPayableCommandHandler commandHandler, IPayableQu
     /// <summary>
     /// Atualiza uma conta a pagar existente com base nos dados fornecidos no comando.
     /// </summary>
+    /// <param name="id"></param>
     /// <param name="command"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [HttpPut]
-    public async Task<IActionResult> UpdatePayable([FromBody] UpdatePayableCommand command,
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> UpdatePayable([FromRoute] Guid id, [FromBody] UpdatePayableCommand command,
         CancellationToken cancellationToken)
     {
+        command.SetPayableId(id);
         var updatedPayable = await commandHandler.UpdatePayableAsync(command, cancellationToken);
         return Ok(updatedPayable);
     }

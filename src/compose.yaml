@@ -3,11 +3,30 @@
 services:
   centavocontrol:
     image: centavocontrol
+    container_name: centavocontrol-api
+    build:
+      context: .
+      dockerfile: CentavoControl/Dockerfile
     ports:
       - "5000:5000"
     environment:
       ASPNETCORE_URLS: "http://+:5000"
-    build:
-      context: .
-      dockerfile: CentavoControl/Dockerfile
+      ConnectionStrings__Database: "Host=postgres;Port=5432;Database=centavocontrol;Username=postgres;Password=123456"
+    depends_on:
+      - postgres
 
+  postgres:
+    image: postgres:16
+    container_name: centavocontrol-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: centavocontrol
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

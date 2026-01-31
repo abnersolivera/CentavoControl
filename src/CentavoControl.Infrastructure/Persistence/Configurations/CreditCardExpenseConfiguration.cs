@@ -17,6 +17,7 @@ public class CreditCardExpenseConfiguration : IEntityTypeConfiguration<CreditCar
         builder.Property(e => e.Installments)
             .IsRequired();
         builder.Property(e => e.PurchaseDate)
+            .HasColumnType("date")
             .IsRequired();
         builder.Property(e => e.UserId)
             .HasMaxLength(100)

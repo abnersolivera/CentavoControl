@@ -201,10 +201,11 @@
             <param name="cancellationToken"></param>
             <returns></returns>
         </member>
-        <member name="M:CentavoControl.Controllers.PayableController.UpdatePayable(CentavoControl.Application.Commands.Payable.UpdatePayableCommand,System.Threading.CancellationToken)">
+        <member name="M:CentavoControl.Controllers.PayableController.UpdatePayable(System.Guid,CentavoControl.Application.Commands.Payable.UpdatePayableCommand,System.Threading.CancellationToken)">
             <summary>
             Atualiza uma conta a pagar existente com base nos dados fornecidos no comando.
             </summary>
+            <param name="id"></param>
             <param name="command"></param>
             <param name="cancellationToken"></param>
             <returns></returns>
